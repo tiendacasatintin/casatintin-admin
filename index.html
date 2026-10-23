@@ -902,7 +902,6 @@ details.webimp summary{cursor:pointer}
       <button type="button" data-sub="ai" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>Asesor <span class="new">IA</span></button>
     </div>
     <div id="subVentas">
-    <div class="askbar"><button class="btn askbtn" type="button" id="btnAsk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M12 8v6M9 11h6"/></svg>Registrar consulta</button><span class="asktoday" id="askToday"></span></div>
     <div id="dropiBox"></div>
     <div class="chips" id="salesPeriod" role="toolbar" aria-label="Período" style="padding-top:4px"></div>
     <section class="summary" id="salesSummary" aria-label="Resumen de ventas del período" style="margin-top:8px"></section>
@@ -917,6 +916,7 @@ details.webimp summary{cursor:pointer}
     <div class="list" id="salesList" aria-live="polite"></div>
     </div>
     <div id="subResp" hidden>
+      <div class="askbar"><button class="btn askbtn" type="button" id="btnAsk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M12 8v6M9 11h6"/></svg>Registrar consulta</button><span class="asktoday" id="askToday"></span></div>
       <div class="rpbox">
         <div class="rpfill">
           <div class="field"><label for="rpCli">Nombre del cliente</label><input id="rpCli" placeholder="Ej: Camila" autocomplete="off" maxlength="40"></div>
@@ -6103,7 +6103,7 @@ $('#aiMsg').addEventListener('input', () => { clearTimeout(aiDetT); aiDetT = set
 $('#aiDet').addEventListener('click', e => { const b = e.target.closest('[data-aiuse]'); if (b) { pkPick('aiProd', b.dataset.aiuse); $('#aiDet').hidden = true; } });
 
 /* ---------- Aviso de versión nueva: evita quedarse con la app vieja guardada en el navegador ---------- */
-const APP_BUILD = '20261023113051';
+const APP_BUILD = '20261023115338';
 let updT = 0;
 async function checkUpdate(){
   if (Date.now() - updT < 120000 || !/^https?:$/.test(location.protocol)) return; updT = Date.now();
