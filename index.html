@@ -489,6 +489,34 @@ input.flash{box-shadow:0 0 0 3px #F4C430;transition:box-shadow .3s}
 .morder{font-size:12.5px;color:var(--muted);margin:0 0 12px}
 .grid2,.grid3{align-items:start}
 .wrap{overflow-x:clip}
+/* ---------- Buscador inteligente de productos ---------- */
+.pk{position:relative}
+.pk select{display:none}
+.pkbox{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--sunk);border-radius:9px;padding:0 6px 0 10px;min-height:44px}
+.pkbox:focus-within{outline:2px solid var(--focus);outline-offset:1px}
+.pkbox svg{width:18px;height:18px;color:var(--muted);flex:none}
+.pkbox img{width:30px;height:30px;border-radius:6px;object-fit:cover;flex:none;border:1px solid var(--line)}
+.pkin{flex:1;min-width:0;border:0!important;background:transparent!important;padding:9px 0!important;min-height:0!important;outline:none}
+.pkx{border:0;background:transparent;cursor:pointer;width:32px;height:32px;border-radius:8px;color:var(--muted);flex:none;font-size:18px;line-height:1}
+.pklist{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:30;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 40px rgba(10,16,30,.22);max-height:min(62vh,420px);overflow-y:auto;overscroll-behavior:contain;padding:4px}
+.pkhd{font:600 11.5px var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:8px 10px 4px}
+.pkit{display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:center;width:100%;text-align:left;border:0;background:transparent;border-radius:9px;padding:6px 8px;cursor:pointer;color:var(--ink)}
+.pkit[aria-selected="true"],.pkit:hover{background:var(--sunk)}
+.pkit img,.pkit .ph{width:40px;height:40px;border-radius:8px;object-fit:cover;background:var(--sunk);border:1px solid var(--line)}
+.pkit .nm{font-size:14px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pkit .nm mark{background:color-mix(in srgb,var(--tag) 60%,transparent);color:inherit;border-radius:2px;padding:0}
+.pkit .mt{display:flex;gap:6px;align-items:center;margin-top:2px;font-size:12px;color:var(--muted)}
+.pkit .cd{font:500 11.5px var(--mono)}
+.pkit .pr{font:600 13.5px var(--body);text-align:right;white-space:nowrap}
+.pkit .st{display:block;font:500 11px var(--body);color:var(--ok)}
+.pkit .st.out{color:var(--warn)}
+.pkit .st.od{color:#8A6400}
+.pkempty{padding:14px 12px;font-size:14px;color:var(--muted)}
+.pkmore{padding:8px 10px;font-size:12.5px;color:var(--muted);text-align:center}
+.aidet{display:flex;align-items:center;gap:10px;background:var(--ok-bg);color:var(--ok);border-radius:10px;padding:8px 10px;margin:-4px 0 12px;font-size:13.5px}
+.aidet img{width:34px;height:34px;border-radius:6px;object-fit:cover;flex:none}
+.aidet span{flex:1;min-width:0}
+.aidet .btn{min-height:32px;padding:4px 10px;font-size:13px}
 /* ---------- Marketing: plan, campañas y posts ---------- */
 .mkseg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);margin:0 0 12px}
 .mkseg button{flex:1;border:0;background:transparent;padding:0 6px;min-height:38px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--muted)}
@@ -868,7 +896,7 @@ details.webimp summary{cursor:pointer}
       <div class="rpbox">
         <div class="rpfill">
           <div class="field"><label for="rpCli">Nombre del cliente</label><input id="rpCli" placeholder="Ej: Camila" autocomplete="off" maxlength="40"></div>
-          <div class="field"><label for="rpProd">Producto</label><select id="rpProd"></select></div>
+          <div class="field"><label for="rpProd_q">Producto</label><div class="pk" data-pk="rpProd"><select id="rpProd"></select></div></div>
         </div>
         <p class="hint" style="margin:0">Las partes <mark style="background:color-mix(in srgb,var(--tag) 55%,transparent);border-radius:3px;padding:0 2px">marcadas</mark> se completan solas con el cliente y el producto que elijas: nombre, precio con IVA y link con foto.</p>
       </div>
@@ -888,7 +916,7 @@ details.webimp summary{cursor:pointer}
       <div id="mkGen" hidden>
         <div class="rpbox">
           <div class="mkgrid">
-            <div class="field"><label for="mkProd">Producto</label><select id="mkProd"></select></div>
+            <div class="field"><label for="mkProd_q">Producto</label><div class="pk" data-pk="mkProd"><select id="mkProd"></select></div></div>
             <div class="field"><label for="mkBadge">Sello en la imagen</label><select id="mkBadge"><option value="">Sin sello</option><option>NUEVO</option><option>OFERTA</option><option>ÚLTIMAS UNIDADES</option><option>POR ENCARGO</option><option>MÁS VENDIDO</option></select></div>
           </div>
           <span class="rplbl">¿Dónde lo vas a publicar?</span>
@@ -903,7 +931,8 @@ details.webimp summary{cursor:pointer}
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>Pregúntale a Claude cómo responder</h3>
         <p class="hint" style="margin:0 0 12px">Pega lo que te escribió el cliente. Claude recibe cómo funciona tu tienda (pagos, envíos, encargos, reservas y cupón) y te sugiere qué responder para llevarlo a la compra.</p>
         <div class="field"><label for="aiMsg">Mensaje del cliente</label><textarea id="aiMsg" placeholder="Ej: hola, está muy caro el organizador, en otro lado lo vi más barato. ¿Me haces precio?"></textarea></div>
-        <div class="field"><label for="aiProd">Producto que consulta (opcional)</label><select id="aiProd"></select></div>
+        <div class="aidet" id="aiDet" hidden></div>
+        <div class="field"><label for="aiProd_q">Producto que consulta (opcional)</label><div class="pk" data-pk="aiProd"><select id="aiProd"></select></div></div>
         <span class="rplbl">¿Qué quieres lograr?</span>
         <div class="rpgoal" id="aiGoal"></div>
         <div class="field"><label for="aiCtx">Algo más que Claude deba saber (opcional)</label><input id="aiCtx" placeholder="Ej: es clienta frecuente, ya compró 2 veces" maxlength="200"></div>
@@ -5449,6 +5478,7 @@ function rpFillSelect(sel, first){
   const el = $(sel), cur = el.value;
   el.innerHTML = `<option value="">${first}</option>` + rpProducts().map(p => `<option value="${esc(p.id)}">${esc(p.code)} · ${esc(p.name)}</option>`).join('');
   if (cur && [...el.options].some(o => o.value === cur)) el.value = cur;
+  pkSync(el.id);
 }
 function drawReplies(){
   const list = rpList().filter(r => rpCat === 'Todas' || r.cat === rpCat), v = rpVars();
@@ -5721,7 +5751,7 @@ async function mkDrawGen(){
   const sel = $('#mkProd'), cur = mkPid || sel.value;
   sel.innerHTML = PS.map(p => `<option value="${esc(p.id)}">${esc(p.code)} · ${esc(p.name)}</option>`).join('');
   if (cur && PS.some(p => p.id === cur)) sel.value = cur;
-  mkPid = sel.value;
+  mkPid = sel.value; pkSync('mkProd');
   $('#mkFmt').innerHTML = Object.keys(MK_FMTS).map(f => `<button class="chip" type="button" data-mkf="${f}" aria-pressed="${f === mkF}">${esc(MK_FMTS[f].label)}</button>`).join('');
   const p = PS.find(x => x.id === mkPid);
   if (!p) { $('#mkOut').innerHTML = '<div class="empty"><p>No hay productos publicados con precio.</p></div>'; return; }
@@ -5827,6 +5857,135 @@ $('#mkTabs').addEventListener('click', e => { const b = e.target.closest('[data-
 $('#mkFmt').addEventListener('click', e => { const b = e.target.closest('[data-mkf]'); if (b) { mkF = b.dataset.mkf; mkImg = ''; mkDrawGen(); } });
 $('#mkProd').addEventListener('change', e => { mkPid = e.target.value; const p = mkProds().find(x => x.id === mkPid); $('#mkBadge').value = p ? mkAuto(p) : ''; mkDrawGen(); });
 $('#mkBadge').addEventListener('change', mkDrawGen);
+
+/* ---------- Buscador inteligente de productos ---------- */
+const PK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
+const pkCompact = s => norm(s).replace(/[^a-z0-9]/g, '');
+const pkCodeKeys = c => { const a = pkCompact(c); return [...new Set([a, a.replace(/^([a-z]+)0+(?=\d)/, '$1'), a.replace(/^([a-z]+\d)0+(?=\d)/, '$1')])]; };
+function pkRecent(){ try { return JSON.parse(localStorage.getItem('pk-recent')) || []; } catch { return []; } }
+function pkRemember(id){ try { localStorage.setItem('pk-recent', JSON.stringify([id, ...pkRecent().filter(x => x !== id)].slice(0, 8))); } catch {} }
+function pkInfo(p){
+  const c = calc(p), vs = hasVariants(p) ? p.variants : [];
+  const price = vs.length ? Math.min(...vs.map(v => Number(v.price) || 0).filter(n => n > 0)) || c.sale : c.sale;
+  const stock = vs.length ? vs.reduce((a, v) => a + (Number(v.qty) || 0), 0) : Number(p.qty) || 0;
+  const ref = (p.images || [])[0] || (vs.find(v => (v.images || []).length) || {}).images?.[0] || '';
+  return { price, stock, od: !!p.onDemand, img: ref ? thumbSrc(ref) : '', cat: catName(p.categoryId), varN: vs.length };
+}
+/* Puntaje: todas las palabras deben aparecer (en cualquier orden, sin tildes); pesa más código exacto, inicio de código y de palabras */
+function pkScore(p, q){
+  const raw = String(q || '').trim(); if (!raw) return 0;
+  const url = raw.match(/\/p\/([A-Za-z0-9_-]+)|#([A-Za-z0-9_-]{3,})/);
+  const keys = pkCodeKeys(p.code);
+  if (url) return keys.includes(pkCompact(url[1] || url[2])) ? 1000 : -1;
+  const qc = pkCompact(raw);
+  if (qc.length >= 3 && keys.includes(qc)) return 900;
+  const name = norm(p.name), hay = `${name} ${norm(p.code)} ${norm(catName(p.categoryId))} ${norm(p.supplier || '')}`, words = hay.split(/[^a-z0-9ñ]+/);
+  let s = 0;
+  for (const tk of norm(raw).split(/\s+/).filter(Boolean)) {
+    const tc = tk.replace(/[^a-z0-9ñ]/g, ''); if (!tc) continue;
+    if (keys.some(k => k.startsWith(tc))) s += 60;
+    else if (name.startsWith(tk)) s += 45;
+    else if (words.some(w => w.startsWith(tc))) s += 30;
+    else if (hay.includes(tk)) s += 12;
+    else if (tc.length >= 4 && words.some(w => w.length >= 4 && pkNear(w, tc))) s += 6;
+    else return -1;
+  }
+  return s;
+}
+function pkNear(w, q){ /* error de tipeo: 1 letra (2 si la palabra es larga), comparando con el inicio de la palabra */ const max = q.length >= 7 ? 2 : 1; for (const L of [q.length - 1, q.length, q.length + 1]) { const a = w.slice(0, L); if (a.length < 3) continue; let prev = Array.from({ length: q.length + 1 }, (_, j) => j); for (let i = 1; i <= a.length; i++) { const cur = [i]; for (let j = 1; j <= q.length; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === q[j - 1] ? 0 : 1)); prev = cur; } if (prev[q.length] <= max) return true; } return false; }
+function pkHL(text, q){
+  let h = esc(text); const toks = norm(q).split(/\s+/).filter(x => x.length >= 2 && !/^\W+$/.test(x)); if (!toks.length) return h;
+  const n = norm(text), marks = [];
+  toks.forEach(tk => { let i = n.indexOf(tk); if (i > -1) marks.push([i, i + tk.length]); });
+  if (!marks.length) return h;
+  marks.sort((a, b) => a[0] - b[0]); let out = '', last = 0;
+  marks.forEach(([a, b]) => { if (a < last) return; out += esc(text.slice(last, a)) + '<mark>' + esc(text.slice(a, b)) + '</mark>'; last = b; });
+  return out + esc(text.slice(last));
+}
+const pkState = {};
+function pkRow(p, q, i){
+  const f = pkInfo(p), st = f.od ? ['od', 'Por encargo'] : f.stock > 0 ? ['', `${f.stock} en stock`] : ['out', 'Agotado'];
+  return `<button type="button" class="pkit" role="option" data-pkid="${esc(p.id)}" data-i="${i}" aria-selected="false">${f.img ? `<img src="${esc(f.img)}" alt="" loading="lazy">` : '<span class="ph"></span>'}
+    <span><span class="nm">${pkHL(p.name || '', q)}</span><span class="mt"><span class="cd">${pkHL(p.code || '', q)}</span>${f.cat && f.cat !== 'Sin categoría' ? `· ${esc(f.cat)}` : ''}</span></span>
+    <span class="pr">${f.varN ? 'Desde ' : ''}${money(f.price)}<span class="st ${st[0]}">${st[1]}</span></span></button>`;
+}
+function pkOpts(id){ const sel = $('#' + id); return [...sel.options].filter(o => o.value).map(o => products.find(p => p.id === o.value)).filter(Boolean); }
+function pkRender(id){
+  const S = pkState[id], q = S.in.value, all = pkOpts(id); let html = '', list;
+  if (!q.trim()) {
+    const rec = pkRecent().map(r => all.find(p => p.id === r)).filter(Boolean).slice(0, 5);
+    const rest = all.filter(p => !rec.includes(p)).sort((a, b) => String(a.name).localeCompare(String(b.name), 'es'));
+    list = [...rec, ...rest];
+    if (rec.length) html += '<div class="pkhd">Usados recientemente</div>' + rec.map((p, i) => pkRow(p, '', i)).join('') + '<div class="pkhd">Todos los productos</div>';
+    html += rest.slice(0, 40).map((p, i) => pkRow(p, '', i + rec.length)).join('');
+    if (rest.length > 40) html += `<div class="pkmore">Escribe para encontrar entre tus ${all.length} productos</div>`;
+  } else {
+    list = all.map(p => [p, pkScore(p, q)]).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1] || String(a[0].name).localeCompare(String(b[0].name), 'es')).map(x => x[0]);
+    html = list.length ? `<div class="pkhd">${list.length} resultado${list.length === 1 ? '' : 's'}</div>` + list.slice(0, 40).map((p, i) => pkRow(p, q, i)).join('') : '<div class="pkempty">Sin resultados. Prueba con parte del nombre, el código (ej: bel10) o la categoría.</div>';
+  }
+  S.list = list.slice(0, 40); S.act = q.trim() && list.length ? 0 : -1;
+  S.box.innerHTML = html; S.box.hidden = false; S.in.setAttribute('aria-expanded', 'true'); pkMark(id);
+}
+function pkMark(id){ const S = pkState[id]; S.box.querySelectorAll('.pkit').forEach(b => b.setAttribute('aria-selected', String(+b.dataset.i === S.act))); const a = S.box.querySelector(`.pkit[data-i="${S.act}"]`); if (a) a.scrollIntoView({ block: 'nearest' }); }
+function pkClose(id){ const S = pkState[id]; if (!S) return; S.box.hidden = true; S.in.setAttribute('aria-expanded', 'false'); pkSync(id); }
+function pkPick(id, pid){
+  const sel = $('#' + id); if (![...sel.options].some(o => o.value === pid)) return;
+  sel.value = pid; pkRemember(pid); pkClose(id);
+  sel.dispatchEvent(new Event('input', { bubbles: true })); sel.dispatchEvent(new Event('change', { bubbles: true }));
+}
+function pkSync(id){
+  const S = pkState[id]; if (!S || document.activeElement === S.in) return;
+  const p = products.find(x => x.id === $('#' + id).value);
+  S.in.placeholder = p ? 'Busca otro producto…' : 'Busca por nombre, código o categoría…';
+  S.in.value = p ? `${p.code} · ${String(p.name || '').trim()}` : '';
+  const f = p && pkInfo(p); S.img.hidden = !(f && f.img); if (f && f.img) S.img.src = f.img;
+  const sel = $('#' + id); S.x.hidden = !p || !(sel.options[0] && !sel.options[0].value);
+}
+function pkInit(id){
+  const wrap = document.querySelector(`.pk[data-pk="${id}"]`); if (!wrap || pkState[id]) return;
+  wrap.insertAdjacentHTML('beforeend', `<div class="pkbox">${PK_ICON}<img alt="" hidden><input class="pkin" id="${id}_q" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="${id}_l" placeholder="Busca por nombre, código o categoría…"><button class="pkx" type="button" aria-label="Quitar producto" hidden>×</button></div><div class="pklist" id="${id}_l" role="listbox" hidden></div>`);
+  const S = pkState[id] = { in: wrap.querySelector('.pkin'), box: wrap.querySelector('.pklist'), img: wrap.querySelector('.pkbox img'), x: wrap.querySelector('.pkx'), list: [], act: -1 };
+  S.in.addEventListener('focus', () => { S.in.value = ''; pkRender(id); });
+  S.in.addEventListener('input', () => { pkRender(id); const q = S.in.value; if (/\/p\/|#|^[A-Za-z]{2,4}\d?-?\d{2,4}$/.test(q.trim()) && S.list.length === 1 && pkScore(S.list[0], q) >= 900) pkPick(id, S.list[0].id); });
+  S.in.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (S.box.hidden) pkRender(id); S.act = Math.min(S.list.length - 1, S.act + 1); pkMark(id); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); S.act = Math.max(0, S.act - 1); pkMark(id); }
+    else if (e.key === 'Enter') { const p = S.list[S.act] || S.list[0]; if (p) { e.preventDefault(); pkPick(id, p.id); S.in.blur(); } }
+    else if (e.key === 'Escape') { S.in.blur(); pkClose(id); }
+  });
+  S.in.addEventListener('blur', () => setTimeout(() => { if (!wrap.contains(document.activeElement)) pkClose(id); }, 150));
+  S.box.addEventListener('mousedown', e => e.preventDefault());
+  S.box.addEventListener('click', e => { const b = e.target.closest('[data-pkid]'); if (b) { pkPick(id, b.dataset.pkid); S.in.blur(); } });
+  S.x.addEventListener('click', () => { const sel = $('#' + id); sel.value = ''; if (!sel.value && sel.options[0] && !sel.options[0].value) { sel.dispatchEvent(new Event('input', { bubbles: true })); sel.dispatchEvent(new Event('change', { bubbles: true })); } pkSync(id); S.in.focus(); });
+  pkSync(id);
+}
+['rpProd', 'aiProd', 'mkProd'].forEach(pkInit);
+
+/* Asesor: detecta el producto en el mensaje del cliente (link, código o nombre) */
+let aiDetT = null;
+function aiDetect(){
+  const msg = $('#aiMsg').value, box = $('#aiDet'), sel = $('#aiProd');
+  if (!msg.trim()) { box.hidden = true; return; }
+  const all = pkOpts('aiProd'); let hit = null, sure = false;
+  const m = msg.match(/\/p\/([A-Za-z0-9_-]+)|#([A-Za-z0-9_-]{3,})/) || msg.match(/\b([A-Za-z]{2,4}\d?-\d{2,5})\b/);
+  if (m) { const k = pkCompact(m[1] || m[2] || m[0]); hit = all.find(p => pkCodeKeys(p.code).includes(k)); sure = !!hit; }
+  if (!hit) {
+    const STOP = new Set(['hola', 'buenas', 'tardes', 'noches', 'dias', 'disponible', 'sigue', 'tienen', 'tiene', 'quiero', 'precio', 'cuanto', 'vale', 'cuesta', 'gracias', 'favor', 'para', 'este', 'esta', 'esto', 'como', 'donde', 'envio', 'envios', 'puedo', 'comprar', 'producto', 'consulta', 'informacion', 'todavia', 'saber', 'quisiera', 'necesito']);
+    const tks = [...new Set(norm(msg).split(/[^a-z0-9ñ]+/).filter(w => w.length >= 4 && !STOP.has(w)))];
+    if (tks.length) {
+      const sc = all.map(p => { const ws = norm(p.name).split(/[^a-z0-9ñ]+/).filter(w => w.length >= 4); const n = tks.filter(tk => ws.some(w => w.startsWith(tk.slice(0, 5)) || tk.startsWith(w.slice(0, 5)))).length; return [p, n, ws.length]; })
+        .filter(x => x[1] >= 2 || (x[1] === 1 && x[2] <= 2)).sort((a, b) => b[1] - a[1]);
+      if (sc.length && (sc.length === 1 || sc[0][1] > sc[1][1])) hit = sc[0][0];
+    }
+  }
+  if (!hit || hit.id === sel.value) { box.hidden = true; return; }
+  if (sure && !sel.value) { pkPick('aiProd', hit.id); box.hidden = true; toast(`Producto detectado: ${hit.code}`); return; }
+  const f = pkInfo(hit);
+  box.innerHTML = `${f.img ? `<img src="${esc(f.img)}" alt="">` : ''}<span>¿Pregunta por <b>${esc(hit.name)}</b>?</span><button class="btn" type="button" data-aiuse="${esc(hit.id)}">Usar</button>`;
+  box.hidden = false;
+}
+$('#aiMsg').addEventListener('input', () => { clearTimeout(aiDetT); aiDetT = setTimeout(aiDetect, 350); });
+$('#aiDet').addEventListener('click', e => { const b = e.target.closest('[data-aiuse]'); if (b) { pkPick('aiProd', b.dataset.aiuse); $('#aiDet').hidden = true; } });
 
 /* ---------- Main events ---------- */
 $('#btnNew').addEventListener('click', () => tab === 'sales' ? openSale(null) : openEditor(null));
