@@ -5468,7 +5468,7 @@ function rpVars(){
   const slug = p ? String(p.code || '').replace(/[^A-Za-z0-9_-]/g, '') : '';
   return { cliente: $('#rpCli').value.trim(), producto: p ? (p.name || '').trim() : '', precio: p ? money(calc(p).sale) : '', codigo: p ? p.code : '',
     link: p && slug ? `${site}/p/${slug}/` : site, catalogo: site, web: webCfg().url || 'https://casatintin.cl',
-    whatsapp: String(settings.whatsapp || '').replace(/\D/g, '') ? `https://wa.me/${String(settings.whatsapp).replace(/\D/g, '')}` : '', numero: mkWa(), abono: money(r.fee ?? 2000), dias_reserva: r.days || '10-15', dias_encargo: (p && p.onDemand && p.lead) || DEFAULT_LEAD, stock: p && rpStock(p) ? String(rpStock(p)) : '2' };
+    whatsapp: String(settings.whatsapp || '').replace(/\D/g, '') ? `${siteURL()}/whatsapp` : '', numero: mkWa(), abono: money(r.fee ?? 2000), dias_reserva: r.days || '10-15', dias_encargo: (p && p.onDemand && p.lead) || DEFAULT_LEAD, stock: p && rpStock(p) ? String(rpStock(p)) : '2' };
 }
 const RP_KEYS = /\{(cliente|producto|precio|codigo|link|catalogo|web|whatsapp|numero|abono|dias_reserva|dias_encargo|stock)\}/g;
 const RP_TOKENS = [['cliente', 'Cliente'], ['producto', 'Producto'], ['precio', 'Precio'], ['codigo', 'Código'], ['link', 'Link del producto'], ['catalogo', 'Catálogo'], ['web', 'Web'], ['whatsapp', 'Mi WhatsApp (link)'], ['numero', 'Mi número'], ['abono', 'Abono reserva'], ['dias_reserva', 'Días reserva'], ['dias_encargo', 'Días encargo']];
