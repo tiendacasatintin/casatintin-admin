@@ -5468,7 +5468,7 @@ function rpVars(){
   const slug = p ? String(p.code || '').replace(/[^A-Za-z0-9_-]/g, '') : '';
   return { cliente: $('#rpCli').value.trim(), producto: p ? (p.name || '').trim() : '', precio: p ? money(calc(p).sale) : '', codigo: p ? p.code : '',
     link: p && slug ? `${site}/p/${slug}/` : site, catalogo: site, web: webCfg().url || 'https://casatintin.cl',
-    whatsapp: String(settings.whatsapp || '').replace(/\D/g, '') ? `${siteURL()}/whatsapp` : '', numero: mkWa(), abono: money(r.fee ?? 2000), dias_reserva: r.days || '10-15', dias_encargo: (p && p.onDemand && p.lead) || DEFAULT_LEAD, stock: p && rpStock(p) ? String(rpStock(p)) : '2' };
+    whatsapp: `${siteURL()}/whatsapp`, numero: mkWa(), abono: money(r.fee ?? 2000), dias_reserva: r.days || '10-15', dias_encargo: (p && p.onDemand && p.lead) || DEFAULT_LEAD, stock: p && rpStock(p) ? String(rpStock(p)) : '2' };
 }
 const RP_KEYS = /\{(cliente|producto|precio|codigo|link|catalogo|web|whatsapp|numero|abono|dias_reserva|dias_encargo|stock)\}/g;
 const RP_TOKENS = [['cliente', 'Cliente'], ['producto', 'Producto'], ['precio', 'Precio'], ['codigo', 'Código'], ['link', 'Link del producto'], ['catalogo', 'Catálogo'], ['web', 'Web'], ['whatsapp', 'Mi WhatsApp (link)'], ['numero', 'Mi número'], ['abono', 'Abono reserva'], ['dias_reserva', 'Días reserva'], ['dias_encargo', 'Días encargo']];
@@ -5657,7 +5657,7 @@ function mkTags(p){
 }
 const mkStock = p => p.od ? `📦 Por encargo: llega en ${p.lead} días hábiles` : p.stock <= 0 ? '⏳ Agotado por ahora: puedes reservarlo' : p.stock <= 3 ? `🔥 ¡Quedan solo ${p.stock}!` : '✅ Disponible para entrega inmediata';
 const mkPrice = p => p.was > p.price ? `💰 ${money(p.price)} (antes ${money(p.was)})` : `💰 ${p.varN ? 'Desde ' : ''}${money(p.price)}`;
-function mkWa(){ const n = String(settings.whatsapp || '').replace(/\D/g, ''); return n ? '+' + n.replace(/^(56)(9)(\d{4})(\d{4})$/, '$1 $2 $3 $4') : ''; }
+function mkWa(){ const n = String(settings.whatsapp || '').replace(/\D/g, '') || '56995298519'; return n ? '+' + n.replace(/^(56)(9)(\d{4})(\d{4})$/, '$1 $2 $3 $4') : ''; }
 function mkGroupVerdict(p){
   if (!p.od && p.stock <= 0) return ['no', 'Mejor no por ahora', 'Está agotado. En los grupos la gente quiere comprar ya: publícalo cuando repongas y usa la reserva solo con quienes te escriban.'];
   if (p.od) return ['mid', 'Sí, con cuidado', `Es por encargo (${p.lead} días hábiles). En grupos locales se prefiere entrega inmediata: deja claro el plazo y úsalo solo con productos muy buscados.`];
@@ -6002,6 +6002,22 @@ function aiDetect(){
 }
 $('#aiMsg').addEventListener('input', () => { clearTimeout(aiDetT); aiDetT = setTimeout(aiDetect, 350); });
 $('#aiDet').addEventListener('click', e => { const b = e.target.closest('[data-aiuse]'); if (b) { pkPick('aiProd', b.dataset.aiuse); $('#aiDet').hidden = true; } });
+
+/* ---------- Aviso de versión nueva: evita quedarse con la app vieja guardada en el navegador ---------- */
+const APP_BUILD = '20261023102059';
+let updT = 0;
+async function checkUpdate(){
+  if (Date.now() - updT < 120000 || !/^https?:$/.test(location.protocol)) return; updT = Date.now();
+  try {
+    const r = await fetch(location.pathname + '?v=' + Date.now(), { cache: 'no-store' }); if (!r.ok) return;
+    const m = (await r.text()).match(/const APP_BUILD = '(\d+)'/);
+    if (m && m[1] > APP_BUILD && !$('#updBar')) {
+      document.body.insertAdjacentHTML('beforeend', '<div id="updBar" role="status" style="position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:60;display:flex;gap:10px;align-items:center;background:var(--ink);color:var(--paper);border-radius:12px;padding:8px 8px 8px 14px;box-shadow:0 10px 30px rgba(0,0,0,.3);font-size:14px;max-width:calc(100% - 24px)"><span>Hay una versión nueva de la app</span><button class="btn primary" type="button" onclick="location.reload()" style="min-height:34px;padding:5px 12px">Actualizar</button></div>');
+    }
+  } catch {}
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') checkUpdate(); });
+setInterval(checkUpdate, 300000); setTimeout(checkUpdate, 15000);
 
 /* ---------- Main events ---------- */
 $('#btnNew').addEventListener('click', () => tab === 'sales' ? openSale(null) : openEditor(null));
