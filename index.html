@@ -489,6 +489,44 @@ input.flash{box-shadow:0 0 0 3px #F4C430;transition:box-shadow .3s}
 .morder{font-size:12.5px;color:var(--muted);margin:0 0 12px}
 .grid2,.grid3{align-items:start}
 .wrap{overflow-x:clip}
+/* ---------- Ventas: Respuestas, Marketing y Asesor ---------- */
+.rpseg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);margin:0 0 14px}
+.rpseg button{flex:1;border:0;background:transparent;padding:0 8px;min-height:42px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px}
+.rpseg button svg{width:16px;height:16px;flex:none}
+.rpseg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.rpseg .new{font:600 10px var(--body);background:var(--tag);color:var(--tag-ink);border-radius:999px;padding:1px 6px}
+.rpbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.rpfill{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rpfill .field{margin-bottom:10px}
+.rpcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.rpcard .top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.rpcard .top b{font:600 15px/1.3 var(--body)}
+.rpcat{font:500 11.5px var(--mono);color:var(--muted);background:var(--sunk);border:1px solid var(--line);border-radius:6px;padding:1px 6px;white-space:nowrap}
+.rpmsg{background:#E7F7EC;color:#10261A;border-radius:4px 14px 14px 14px;padding:10px 12px;font-size:14.5px;white-space:pre-wrap;word-break:break-word}
+.rpmsg mark{background:color-mix(in srgb,var(--tag) 55%,transparent);color:inherit;border-radius:3px;padding:0 2px}
+.rpacts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.rpacts .btn{flex:1;justify-content:center}
+.rpacts .btn.sm{min-height:34px;padding:6px 11px;font-size:13.5px}
+.rpbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:2px 0 10px}
+.rpbar .hint{flex:1;margin:0}
+.rptip{display:grid;grid-template-columns:38px 1fr;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.rptip .n{width:38px;height:38px;border-radius:10px;background:var(--tag);color:var(--tag-ink);display:grid;place-items:center;font:700 17px var(--display)}
+.rptip h3{margin:0 0 2px;font:600 15.5px/1.3 var(--body)}
+.rptip p{margin:0;color:var(--muted);font-size:14px}
+.rptip .ex{margin-top:8px}
+.rpai{border:1.5px solid color-mix(in srgb,var(--accent) 40%,var(--line));background:color-mix(in srgb,var(--accent) 6%,var(--surface))}
+.rpai h3{display:flex;align-items:center;gap:8px;margin:0 0 4px;font:700 17px var(--display)}
+.rpai h3 svg{width:20px;height:20px;color:var(--accent)}
+.rpai textarea{min-height:96px;resize:vertical}
+.rphow{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
+.rphow li{margin-bottom:3px}
+.rpprev{background:var(--sunk);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;white-space:pre-wrap;word-break:break-word;margin-top:8px;max-height:260px;overflow:auto}
+.rpgoal{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.rpgoal .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rplbl{font-size:13px;font-weight:600}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .rpmsg{background:#173326;color:#DCF3E4}}
+:root[data-theme="dark"] .rpmsg{background:#173326;color:#DCF3E4}
+@media (max-width:460px){.rpfill{grid-template-columns:1fr}.rpseg button{padding:0 4px;font-size:13px;gap:4px}.rpseg button svg{display:none}.rpseg .new{padding:1px 5px}}
 .tabs{overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
 .tabs button{flex:1 0 auto;white-space:nowrap;padding:9px 12px}
 .rowbox{grid-template-columns:minmax(0,1fr) auto}
@@ -752,7 +790,14 @@ details.webimp summary{cursor:pointer}
   </div>
 
   <div id="viewSales" hidden>
-    <div class="vhead"><h2>Gestión de ventas</h2><p>Todas tus ventas en un lugar. Cambia el estado directo en la tabla.</p></div>
+    <div class="vhead"><h2>Gestión de ventas</h2><p>Tus ventas, respuestas listas para copiar y consejos para vender más.</p></div>
+    <div class="rpseg" role="group" aria-label="Sección de ventas" id="salesSub">
+      <button type="button" data-sub="ventas" aria-pressed="true">Ventas</button>
+      <button type="button" data-sub="resp" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg>Respuestas</button>
+      <button type="button" data-sub="mkt" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/></svg>Marketing</button>
+      <button type="button" data-sub="ai" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>Asesor <span class="new">IA</span></button>
+    </div>
+    <div id="subVentas">
     <div class="askbar"><button class="btn askbtn" type="button" id="btnAsk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M12 8v6M9 11h6"/></svg>Registrar consulta</button><span class="asktoday" id="askToday"></span></div>
     <div id="dropiBox"></div>
     <div class="chips" id="salesPeriod" role="toolbar" aria-label="Período" style="padding-top:4px"></div>
@@ -766,6 +811,41 @@ details.webimp summary{cursor:pointer}
     </div>
     <div class="chips" id="salesChips" role="toolbar" aria-label="Filtrar por estado"></div>
     <div class="list" id="salesList" aria-live="polite"></div>
+    </div>
+    <div id="subResp" hidden>
+      <div class="rpbox">
+        <div class="rpfill">
+          <div class="field"><label for="rpCli">Nombre del cliente</label><input id="rpCli" placeholder="Ej: Camila" autocomplete="off" maxlength="40"></div>
+          <div class="field"><label for="rpProd">Producto</label><select id="rpProd"></select></div>
+        </div>
+        <p class="hint" style="margin:0">Las partes <mark style="background:color-mix(in srgb,var(--tag) 55%,transparent);border-radius:3px;padding:0 2px">marcadas</mark> se completan solas con el cliente y el producto que elijas: nombre, precio con IVA y link con foto.</p>
+      </div>
+      <div class="chips" id="rpCats" role="toolbar" aria-label="Tipo de respuesta"></div>
+      <div class="rpbar"><p class="hint" id="rpCount"></p><button class="btn" type="button" id="rpNew" style="min-height:34px;padding:6px 11px;font-size:13.5px">+ Nueva respuesta</button></div>
+      <div id="rpList"></div>
+    </div>
+    <div id="subMkt" hidden><div id="rpTips"></div></div>
+    <div id="subAi" hidden>
+      <div class="rpbox rpai">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>Pregúntale a Claude cómo responder</h3>
+        <p class="hint" style="margin:0 0 12px">Pega lo que te escribió el cliente. Claude recibe cómo funciona tu tienda (pagos, envíos, encargos, reservas y cupón) y te sugiere qué responder para llevarlo a la compra.</p>
+        <div class="field"><label for="aiMsg">Mensaje del cliente</label><textarea id="aiMsg" placeholder="Ej: hola, está muy caro el organizador, en otro lado lo vi más barato. ¿Me haces precio?"></textarea></div>
+        <div class="field"><label for="aiProd">Producto que consulta (opcional)</label><select id="aiProd"></select></div>
+        <span class="rplbl">¿Qué quieres lograr?</span>
+        <div class="rpgoal" id="aiGoal"></div>
+        <div class="field"><label for="aiCtx">Algo más que Claude deba saber (opcional)</label><input id="aiCtx" placeholder="Ej: es clienta frecuente, ya compró 2 veces" maxlength="200"></div>
+        <div class="rpacts">
+          <button class="btn primary" type="button" id="aiAsk">Pedir consejo a Claude</button>
+          <button class="btn" type="button" id="aiCopy">Copiar consulta</button>
+        </div>
+        <ol class="rphow">
+          <li>Se abre Claude con tu consulta ya escrita y el contexto de tu tienda.</li>
+          <li>Claude te da 2 o 3 respuestas listas para WhatsApp y te dice cuál conviene.</li>
+          <li>Copias la que más te guste. Si te funciona, guárdala en Respuestas.</li>
+        </ol>
+      </div>
+      <details class="rpbox"><summary class="rplbl" style="cursor:pointer">Ver lo que recibe Claude</summary><div class="rpprev" id="aiPrev"></div></details>
+    </div>
   </div>
 
   <div id="viewCoupons" hidden>
@@ -847,6 +927,7 @@ details.webimp summary{cursor:pointer}
 <dialog id="dlgTrash" aria-labelledby="trTitle" style="width:min(560px,100%)"><div class="dlg" id="trInner"></div></dialog>
 <dialog id="dlgDup" aria-labelledby="dupTitle" style="width:min(560px,100%)"><div class="dlg" id="dupInner"></div></dialog>
 <dialog id="dlgAsk" aria-labelledby="askTitle" style="width:min(560px,100%)"><div class="dlg" id="askInner"></div></dialog>
+<dialog id="dlgReply" aria-labelledby="rpTitle" style="width:min(560px,100%)"><div class="dlg"><div class="dlg-head"><h2 id="rpTitle">Nueva respuesta</h2><button class="x" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><div class="dlg-body"><div class="field"><label for="rpEName">Título</label><input id="rpEName" maxlength="60" placeholder="Ej: Cliente pide descuento"></div><div class="field"><label for="rpECat">Tipo</label><select id="rpECat"></select></div><div class="field"><label for="rpEText">Mensaje</label><textarea id="rpEText" style="min-height:160px;resize:vertical" maxlength="1500"></textarea></div><p class="hint" style="margin:0 0 12px">Puedes usar {cliente}, {producto}, {precio}, {codigo}, {link}, {catalogo}, {web}, {abono}, {dias_reserva} y {dias_encargo}. Se completan solos. Para negrita en WhatsApp usa *asteriscos*.</p><p class="err" id="rpErr" role="alert"></p><div class="rpacts"><button class="btn" type="button" id="rpEDel" style="color:var(--warn)">Eliminar</button><button class="btn" type="button" id="rpEReset" hidden>Restaurar original</button><button class="btn primary" type="button" id="rpESave">Guardar</button></div></div></div></dialog>
 <dialog id="dlgSettings" aria-labelledby="dsTitle"><div class="dlg" id="dsInner"></div></dialog>
 <input type="file" id="fileIn" accept="image/*" multiple hidden>
 <input type="file" id="vidIn" accept="video/mp4,video/webm" hidden>
@@ -891,6 +972,7 @@ let salesPeriod = 'month', salesView = (() => { try { return localStorage.getIte
 const SALE_PERIODS = [['today', 'Hoy'], ['7d', '7 días'], ['month', 'Este mes'], ['prevmonth', 'Mes anterior'], ['year', 'Este año'], ['all', 'Todo']];
 let coupons = [];
 let sales = [], tab = 'products', saleQuery = '', saleStatus = 'all', saleChannel = 'all', period = '30d';
+let salesSub = 'ventas', replies = null;
 
 /* ---------- Utils ---------- */
 function clone(o){ return JSON.parse(JSON.stringify(o)); }
@@ -1231,6 +1313,7 @@ async function loadSupa(quiet){
     sales = S.map(r => ({ ...r.data, id: r.id }));
     coupons = C.map(r => ({ ...r.data, id: r.id }));
     const tr = G.find(r => r.id === 'trash'); trash = (tr && tr.data && Array.isArray(tr.data.items)) ? tr.data.items : [];
+    const rq = G.find(r => r.id === 'replies'); replies = (rq && rq.data && Array.isArray(rq.data.items)) ? rq.data.items : null; if (tab === 'sales' && salesSub !== 'ventas') drawSalesSub();
     const st = G.find(r => r.id === 'settings');
     settings = st ? { ...clone(DEFAULT_SETTINGS), ...clone(st.data) } : clone(DEFAULT_SETTINGS);
     if (!Array.isArray(settings.categories)) settings.categories = clone(DEFAULT_CATS);
@@ -1477,7 +1560,7 @@ function render(){
   $('#viewCoupons').hidden = tab !== 'coupons';
   $('#viewVisits').hidden = tab !== 'visits';
   $('#viewBuy').hidden = tab !== 'buy';
-  const fab = $('#btnNew'); fab.hidden = tab === 'stats' || tab === 'coupons' || tab === 'visits' || tab === 'buy'; fab.textContent = tab === 'sales' ? '+ Nueva venta' : '+ Nuevo producto';
+  const fab = $('#btnNew'); fab.hidden = tab === 'stats' || tab === 'coupons' || tab === 'visits' || tab === 'buy' || (tab === 'sales' && salesSub !== 'ventas'); fab.textContent = tab === 'sales' ? '+ Nueva venta' : '+ Nuevo producto';
   if (tab === 'sales') renderSales();
   if (tab === 'stats') renderStats();
   if (tab === 'coupons') renderCoupons();
@@ -5240,6 +5323,157 @@ $('#dlgOrder').addEventListener('click', async e => {
     try { await Store.saveSettings(s); settings = s; $('#dlgOrder').close(); toast('Orden del catálogo guardado'); render(); }
     catch (err) { $('#ordErr').textContent = errMsg(err); }
   }
+});
+
+/* ---------- Ventas: Respuestas listas, Marketing y Asesor IA ---------- */
+let rpCat = 'Todas', rpEditing = null, aiGoal = 'Cerrar la venta';
+const RP_CATS = ['Primer contacto', 'Precio', 'Envíos', 'Pagos', 'Encargo y reservas', 'Seguimiento', 'Postventa'];
+const RP_DEFAULTS = [
+  { id: 'd1', cat: 'Primer contacto', name: 'Saludo + link del producto', text: '¡Hola {cliente}! 👋 Gracias por escribir a Casa Tintin.\nSí, tenemos *{producto}* a {precio} (IVA incluido). Aquí lo puedes ver con fotos:\n{link}\n\n¿Lo quieres con entrega personal o envío a domicilio?' },
+  { id: 'd2', cat: 'Primer contacto', name: '¿Está disponible?', text: '¡Sí, está disponible {cliente}! 🙌 De *{producto}* me quedan pocas unidades.\n¿Te lo dejo apartado? Así no te quedas sin el tuyo.' },
+  { id: 'd3', cat: 'Precio', name: 'Cliente pide descuento', text: 'Entiendo {cliente} 😊 El precio de *{producto}* es {precio} con IVA incluido, y es producto nuevo con garantía de la tienda.\nLo que sí te puedo ofrecer: si compras por nuestra web te llevas un *cupón de 10%* para tu próxima compra 🎁\n{link}' },
+  { id: 'd4', cat: 'Precio', name: '"Lo vi más barato en otro lado"', text: '¡Gracias por contarme {cliente}! Nuestro precio de {precio} incluye IVA y atención directa conmigo por WhatsApp antes y después de la compra.\nSi quieres, te muestro un producto que combina perfecto con *{producto}* para que aproveches el despacho 😉' },
+  { id: 'd5', cat: 'Envíos', name: 'Opciones de entrega', text: 'Tenemos dos opciones {cliente}:\n📍 *Entrega personal sin costo* en puntos preestablecidos; coordinamos el punto y el horario contigo.\n🚚 *Envío a domicilio* por Blue Express: el costo se calcula según tu dirección al pagar en la web.\n¿Cuál te acomoda más?' },
+  { id: 'd6', cat: 'Pagos', name: 'Formas de pago', text: 'Puedes pagar de dos formas:\n💳 *Débito o crédito* en nuestra web: {link}\n🏦 *Transferencia*: te envío los datos y me mandas el comprobante por aquí.\n¿Con cuál prefieres?' },
+  { id: 'd7', cat: 'Encargo y reservas', name: 'Producto por encargo', text: '*{producto}* es por encargo {cliente}: llega en {dias_encargo} días hábiles desde que confirmas tu pago.\nTe aviso apenas lo tenga para coordinar la entrega 📦' },
+  { id: 'd8', cat: 'Encargo y reservas', name: 'Agotado: ofrecer reserva', text: 'Por ahora *{producto}* está agotado 😕 pero lo puedes reservar con un abono de {abono} (se descuenta del precio final). El tiempo estimado es de {dias_reserva} días.\n¿Te lo reservo?' },
+  { id: 'd9', cat: 'Seguimiento', name: 'Cliente no respondió (24 h)', text: 'Hola {cliente} 😊 ¿Pudiste ver *{producto}*? Te lo puedo dejar apartado hasta mañana para que no te quedes sin él.\n{link}' },
+  { id: 'd10', cat: 'Postventa', name: 'Gracias por tu compra', text: '¡Gracias por tu compra {cliente}! 💛 Espero que disfrutes *{producto}*.\nSi nos mandas una foto o un comentario, nos ayudas muchísimo. Y aquí tienes todo el catálogo para tu próxima compra: {catalogo}' },
+  { id: 'd11', cat: 'Postventa', name: 'Pedir reseña', text: 'Hola {cliente}, ¿qué te pareció *{producto}*? ⭐ Tu opinión nos ayuda a mejorar y a que otras personas se animen a comprar. ¡Gracias por preferir Casa Tintin!' }
+];
+const RP_TIPS = [
+  ['Responde en menos de 5 minutos', 'Un cliente que espera mucho se va a otra tienda. Usa las respuestas listas: eliges producto, copias y envías.'],
+  ['Manda siempre el link con foto', 'El link de cada producto muestra su foto, nombre y precio en WhatsApp. Vende más que un texto solo.', 'Mira *{producto}* con fotos aquí 👉 {link}'],
+  ['Cierra con una pregunta de opción', 'En vez de "¿te interesa?", pregunta entre dos opciones que ya suponen la compra.', '¿Lo quieres con entrega personal o envío a domicilio?'],
+  ['Urgencia honesta', 'Si quedan pocas unidades, dilo. Es real y ayuda a decidir. Nunca inventes escasez.', 'Me quedan solo {stock} unidades de *{producto}* 🙌'],
+  ['Ofrece un complemento', 'Cuando el cliente ya decidió, sugiere un producto que combine. Sube el valor del pedido.', 'Este producto combina perfecto con *{producto}*. ¿Te lo agrego al pedido?'],
+  ['Seguimiento a las 24 horas', 'Si alguien preguntó y no respondió, escríbele una vez al día siguiente. Muchas ventas se cierran ahí.'],
+  ['Usa el cupón para llevar a la web', 'El cupón de 10% en la primera compra web hace que te paguen con tarjeta y que vuelvan a comprar.'],
+  ['Pide fotos y reseñas', 'Después de la entrega, pide una foto o comentario y publícalo en tus historias. Es la mejor publicidad gratis.']
+];
+const AI_GOALS = ['Cerrar la venta', 'Responder objeción de precio', 'Recuperar cliente que no responde', 'Resolver un reclamo', 'Ofrecer otro producto'];
+function rpList(){ return replies || clone(RP_DEFAULTS); }
+function rpProducts(){ return products.filter(p => !p.hideCatalog && calc(p).sale > 0).sort((a, b) => String(a.name || '').localeCompare(String(b.name || ''), 'es')); }
+function rpProd(sel){ const id = $(sel).value; return id ? products.find(p => p.id === id) || null : null; }
+function rpStock(p){ return Number(p && p.qty) || 0; }
+function rpVars(){
+  const p = rpProd('#rpProd'), site = siteURL(), r = settings.reserve || {};
+  const slug = p ? String(p.code || '').replace(/[^A-Za-z0-9_-]/g, '') : '';
+  return { cliente: $('#rpCli').value.trim(), producto: p ? (p.name || '').trim() : '', precio: p ? money(calc(p).sale) : '', codigo: p ? p.code : '',
+    link: p && slug ? `${site}/p/${slug}/` : site, catalogo: site, web: webCfg().url || 'https://casatintin.cl',
+    abono: money(r.fee ?? 2000), dias_reserva: r.days || '10-15', dias_encargo: (p && p.onDemand && p.lead) || DEFAULT_LEAD, stock: p && rpStock(p) ? String(rpStock(p)) : '2' };
+}
+const RP_KEYS = /\{(cliente|producto|precio|codigo|link|catalogo|web|abono|dias_reserva|dias_encargo|stock)\}/g;
+const rpTidy = s => s.replace(/ +([!,?.])/g, '$1').replace(/ {2,}/g, ' ');
+function rpFill(t, v){ return rpTidy(t.replace(RP_KEYS, (m, k) => v[k] || (k === 'cliente' ? '' : m))); }
+function rpFillHTML(t, v){
+  let out = '', last = 0;
+  t.replace(RP_KEYS, (m, k, i) => { out += esc(t.slice(last, i)) + (v[k] ? `<mark>${esc(v[k])}</mark>` : (k === 'cliente' ? '' : `<mark>${esc(m)}</mark>`)); last = i + m.length; return m; });
+  return rpTidy(out + esc(t.slice(last)));
+}
+function rpFillSelect(sel, first){
+  const el = $(sel), cur = el.value;
+  el.innerHTML = `<option value="">${first}</option>` + rpProducts().map(p => `<option value="${esc(p.id)}">${esc(p.code)} · ${esc(p.name)}</option>`).join('');
+  if (cur && [...el.options].some(o => o.value === cur)) el.value = cur;
+}
+function drawReplies(){
+  const list = rpList().filter(r => rpCat === 'Todas' || r.cat === rpCat), v = rpVars();
+  $('#rpCats').innerHTML = ['Todas', ...RP_CATS].map(c => `<button class="chip" type="button" data-rpc="${esc(c)}" aria-pressed="${c === rpCat}">${esc(c)}</button>`).join('');
+  $('#rpCount').textContent = `${list.length} respuesta${list.length === 1 ? '' : 's'} lista${list.length === 1 ? '' : 's'} para copiar`;
+  $('#rpList').innerHTML = list.length ? list.map(r => `<article class="rpcard"><div class="top"><b>${esc(r.name)}</b><span class="rpcat">${esc(r.cat)}</span></div>
+    <div class="rpmsg">${rpFillHTML(r.text, v)}</div>
+    <div class="rpacts"><button class="btn primary sm" type="button" data-rpcopy="${esc(r.id)}">Copiar</button><button class="btn sm" type="button" data-rpedit="${esc(r.id)}">Editar</button></div></article>`).join('')
+    : '<div class="empty"><p>No hay respuestas de este tipo. Crea una con "+ Nueva respuesta".</p></div>';
+}
+function drawTips(){
+  const v = rpVars();
+  $('#rpTips').innerHTML = `<div class="rpbox" style="padding:12px 14px"><p class="hint" style="margin:0">Ocho hábitos que ayudan a vender más por WhatsApp e Instagram. Los ejemplos se completan con el producto elegido en Respuestas.</p></div>` +
+    RP_TIPS.map(([h, d, ex], i) => `<div class="rptip"><span class="n">${i + 1}</span><div><h3>${esc(h)}</h3><p>${esc(d)}</p>${ex ? `<div class="ex"><div class="rpmsg">${rpFillHTML(ex, v)}</div><div class="rpacts"><button class="btn sm" type="button" data-tipcopy="${i}">Copiar ejemplo</button></div></div>` : ''}</div></div>`).join('');
+}
+function aiPrompt(){
+  const p = rpProd('#aiProd'), msg = $('#aiMsg').value.trim(), ctx = $('#aiCtx').value.trim(), site = siteURL(), r = settings.reserve || {}, web = webCfg();
+  const webName = web.name || 'casatintin.cl';
+  const slug = p ? String(p.code || '').replace(/[^A-Za-z0-9_-]/g, '') : '';
+  const st = p ? (p.onDemand ? `por encargo (${p.lead || DEFAULT_LEAD} días hábiles)` : rpStock(p) > 0 ? `${rpStock(p)} en stock` : 'agotado') : '';
+  return `Eres mi asesor de ventas para ${settings.storeName || 'Casa Tintin'}, mi tienda online en Chile (vendo por WhatsApp, Instagram, Marketplace y mi web ${webName}).
+
+Cómo funciona mi tienda:
+- Precios con IVA incluido.
+- Pago: transferencia (el cliente envía el comprobante por WhatsApp) o débito/crédito en mi web ${webName}.
+- Entrega personal sin costo en puntos preestablecidos (punto y horario a acordar), o envío a domicilio por Blue Express (costo según dirección, se calcula al pagar en la web).
+- Productos por encargo: llegan en ${DEFAULT_LEAD} días hábiles.
+- Productos agotados de mi stock: se reservan con un abono de ${money(r.fee ?? 2000)} que se descuenta del precio; tiempo estimado ${r.days || '10-15'} días.
+- Primera compra en la web: cupón de 10% para la siguiente compra.
+- Catálogo: ${site}
+${p ? `\nProducto que consulta: ${(p.name || '').trim()} (código ${p.code}), ${money(calc(p).sale)}, ${st}. Link con foto: ${site}/p/${slug}/\n` : ''}
+Mensaje del cliente:
+"${msg || '(pega aquí el mensaje)'}"
+${ctx ? `\nContexto: ${ctx}\n` : ''}
+Mi objetivo: ${aiGoal.toLowerCase()}.
+
+Dame 2 o 3 respuestas cortas para WhatsApp (tono cercano y chileno, sin exagerar con emojis, usa *negrita* de WhatsApp), dime cuál recomiendas y por qué en una línea, y qué hago si el cliente no responde.`;
+}
+function drawAI(){
+  $('#aiGoal').innerHTML = AI_GOALS.map(g => `<button class="chip" type="button" data-goal="${esc(g)}" aria-pressed="${g === aiGoal}">${esc(g)}</button>`).join('');
+  $('#aiPrev').textContent = aiPrompt();
+}
+function drawSalesSub(){
+  document.querySelectorAll('#salesSub [data-sub]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.sub === salesSub)));
+  $('#subVentas').hidden = salesSub !== 'ventas'; $('#subResp').hidden = salesSub !== 'resp'; $('#subMkt').hidden = salesSub !== 'mkt'; $('#subAi').hidden = salesSub !== 'ai';
+  if (salesSub === 'resp') { rpFillSelect('#rpProd', 'Elegir producto…'); drawReplies(); }
+  if (salesSub === 'mkt') { rpFillSelect('#rpProd', 'Elegir producto…'); drawTips(); }
+  if (salesSub === 'ai') { rpFillSelect('#aiProd', 'Sin producto específico'); drawAI(); }
+}
+async function saveReplies(list){
+  replies = list;
+  if (mode === 'supa') await supaPut('config', 'replies', { items: list });
+  else { try { localStorage.setItem('tienda-replies', JSON.stringify(list)); } catch {} }
+}
+try { if (!SUPA) { const lr = JSON.parse(localStorage.getItem('tienda-replies')); if (Array.isArray(lr)) replies = lr; } } catch {}
+function openReply(r){
+  rpEditing = r || null;
+  $('#rpTitle').textContent = r ? 'Editar respuesta' : 'Nueva respuesta';
+  $('#rpECat').innerHTML = RP_CATS.map(c => `<option>${esc(c)}</option>`).join('');
+  $('#rpEName').value = r ? r.name : ''; $('#rpECat').value = r ? r.cat : (rpCat !== 'Todas' ? rpCat : RP_CATS[0]);
+  $('#rpEText').value = r ? r.text : '¡Hola {cliente}! '; $('#rpErr').textContent = '';
+  $('#rpEDel').hidden = !r; const def = r && RP_DEFAULTS.find(d => d.id === r.id); $('#rpEReset').hidden = !def || (def.text === r.text && def.name === r.name);
+  $('#dlgReply').showModal();
+}
+$('#salesSub').addEventListener('click', e => { const b = e.target.closest('[data-sub]'); if (!b) return; salesSub = b.dataset.sub; drawSalesSub(); render(); });
+$('#rpCats').addEventListener('click', e => { const b = e.target.closest('[data-rpc]'); if (b) { rpCat = b.dataset.rpc; drawReplies(); } });
+['#rpCli', '#rpProd'].forEach(s => $(s).addEventListener('input', () => { if (salesSub === 'mkt') drawTips(); else drawReplies(); }));
+$('#rpNew').addEventListener('click', () => openReply(null));
+$('#rpList').addEventListener('click', e => {
+  const c = e.target.closest('[data-rpcopy]'), ed = e.target.closest('[data-rpedit]');
+  if (c) { const r = rpList().find(x => x.id === c.dataset.rpcopy); if (r) copyText(rpFill(r.text, rpVars()), 'Copiado, pégalo en WhatsApp'); }
+  if (ed) { const r = rpList().find(x => x.id === ed.dataset.rpedit); if (r) openReply(r); }
+});
+$('#rpTips').addEventListener('click', e => { const b = e.target.closest('[data-tipcopy]'); if (b) copyText(rpFill(RP_TIPS[+b.dataset.tipcopy][2], rpVars()), 'Copiado, pégalo en WhatsApp'); });
+$('#aiGoal').addEventListener('click', e => { const b = e.target.closest('[data-goal]'); if (b) { aiGoal = b.dataset.goal; drawAI(); } });
+['#aiMsg', '#aiProd', '#aiCtx'].forEach(s => $(s).addEventListener('input', drawAI));
+$('#aiAsk').addEventListener('click', () => {
+  if (!$('#aiMsg').value.trim()) { toast('Pega primero el mensaje del cliente'); $('#aiMsg').focus(); return; }
+  window.open('https://claude.ai/new?q=' + encodeURIComponent(aiPrompt()), '_blank', 'noopener');
+});
+$('#aiCopy').addEventListener('click', () => copyText(aiPrompt(), 'Consulta copiada, pégala en Claude'));
+$('#dlgReply').addEventListener('click', async e => {
+  const d = $('#dlgReply');
+  if (e.target.closest('[data-close]')) { d.close(); return; }
+  const id = e.target.closest('button')?.id;
+  if (!['rpESave', 'rpEDel', 'rpEReset'].includes(id)) return;
+  const list = clone(rpList());
+  if (id === 'rpESave') {
+    const name = $('#rpEName').value.trim(), text = $('#rpEText').value.trim(), cat = $('#rpECat').value;
+    if (!name || !text) { $('#rpErr').textContent = 'Completa el título y el mensaje.'; return; }
+    if (rpEditing) { const x = list.find(r => r.id === rpEditing.id); if (x) Object.assign(x, { name, text, cat }); }
+    else list.unshift({ id: genId(), name, text, cat });
+  } else if (id === 'rpEDel') {
+    const i = list.findIndex(r => r.id === rpEditing.id); if (i > -1) list.splice(i, 1);
+  } else {
+    const def = RP_DEFAULTS.find(r => r.id === rpEditing.id), x = list.find(r => r.id === rpEditing.id); if (def && x) Object.assign(x, clone(def));
+  }
+  try { await saveReplies(list); d.close(); drawReplies(); toast(id === 'rpEDel' ? 'Respuesta eliminada' : 'Respuesta guardada'); }
+  catch (err) { $('#rpErr').textContent = 'No se pudo guardar: ' + errMsg(err); }
 });
 
 /* ---------- Main events ---------- */
