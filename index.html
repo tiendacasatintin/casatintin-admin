@@ -489,6 +489,58 @@ input.flash{box-shadow:0 0 0 3px #F4C430;transition:box-shadow .3s}
 .morder{font-size:12.5px;color:var(--muted);margin:0 0 12px}
 .grid2,.grid3{align-items:start}
 .wrap{overflow-x:clip}
+/* ---------- Marketing: plan, campañas y posts ---------- */
+.mkseg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);margin:0 0 12px}
+.mkseg button{flex:1;border:0;background:transparent;padding:0 6px;min-height:38px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--muted)}
+.mkseg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.mkcoach{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:color-mix(in srgb,var(--accent) 7%,var(--surface));border:1.5px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:14px;padding:12px 14px;margin-bottom:12px}
+.mkcoach .av{width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:700 13px var(--display)}
+.mkcoach b{display:block;font:600 14.5px var(--body);margin-bottom:2px}
+.mkcoach p{margin:0;font-size:14px}
+.mkcoach ul{margin:4px 0 0;padding-left:18px;font-size:14px}
+.mkcoach li{margin-bottom:3px}
+.mkweek{display:grid;gap:8px}
+.mkday{display:grid;grid-template-columns:52px 1fr;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;align-items:start}
+.mkday.done{opacity:.6}
+.mkday.today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.mkdn{font:700 13px var(--display);text-align:center;background:var(--sunk);border-radius:10px;padding:6px 0;line-height:1.2}
+.mkdn small{display:block;font:500 11px var(--body);color:var(--muted)}
+.mktop{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.mkth{font:600 14.5px var(--body)}
+.mkfmt{font:600 11.5px var(--body);border-radius:999px;padding:2px 8px;background:var(--sunk);border:1px solid var(--line);white-space:nowrap}
+.mkfmt.ig{background:#FDE7F1;border-color:#F6B7D2;color:#8A1E52}
+.mkfmt.fb{background:#E4ECFF;border-color:#B9CBFA;color:#1D3E9A}
+.mkfmt.wa{background:#E2F5EA;border-color:#A9DDBE;color:#11643A}
+.mkfmt.mk{background:#FFF1D6;border-color:#F0CF8A;color:#74510A}
+.mkprod{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:13.5px;line-height:1.3}
+.mkth40{width:40px;height:40px;border-radius:8px;object-fit:cover;background:var(--sunk);flex:none;border:1px solid var(--line)}
+.mkacts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;align-items:center}
+.mkacts .btn{min-height:34px;padding:5px 11px;font-size:13.5px}
+.mkcheck{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;cursor:pointer}
+.mkcheck input{width:18px;height:18px;accent-color:var(--ok)}
+.mkcamp{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.mkcamp h3{margin:0;font:700 17px/1.25 var(--display);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mkcamp .cnt{font:600 12px var(--body);background:var(--tag);color:var(--tag-ink);border-radius:999px;padding:1px 8px}
+.mkcamp .why{margin:4px 0 8px;font-size:14px;color:var(--muted)}
+.mkthumbs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:8px}
+.mkthumbs img,.mkthumbs span{width:54px;height:54px;border-radius:8px;object-fit:cover;background:var(--sunk);border:1px solid var(--line);flex:none}
+.mkgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mkgrid .field{margin-bottom:8px}
+.mkout{display:grid;gap:12px}
+.mkcv{display:grid;gap:8px;justify-items:center;background:var(--sunk);border:1px solid var(--line);border-radius:14px;padding:12px}
+.mkcv canvas{width:100%;max-width:300px;height:auto;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.15);background:#fff}
+.mkcv .rpseg{margin:0;width:100%;max-width:320px}
+.mktxt{background:var(--sunk);border:1px solid var(--line);border-radius:12px;padding:12px;white-space:pre-wrap;word-break:break-word;font-size:14.5px}
+.mksec{font:700 15px var(--display);margin:0 0 6px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mkverd{border-radius:12px;padding:10px 12px;font-size:14px}
+.mkverd b{display:block;margin-bottom:2px}
+.mkverd.yes{background:var(--ok-bg);color:var(--ok)}
+.mkverd.mid{background:#FFF4D6;color:#6B4A00}
+.mkverd.no{background:var(--warn-bg);color:var(--warn)}
+.mkscenes{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.mkscenes li{display:grid;grid-template-columns:70px 1fr;gap:8px;background:var(--sunk);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px}
+.mkscenes li b{font:600 12px var(--mono);color:var(--accent)}
+@media (max-width:460px){.mkgrid{grid-template-columns:1fr}.mkseg button{font-size:12.5px;padding:0 3px}}
 /* ---------- Ventas: Respuestas, Marketing y Asesor ---------- */
 .rpseg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);margin:0 0 14px}
 .rpseg button{flex:1;border:0;background:transparent;padding:0 8px;min-height:42px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px}
@@ -824,7 +876,28 @@ details.webimp summary{cursor:pointer}
       <div class="rpbar"><p class="hint" id="rpCount"></p><button class="btn" type="button" id="rpNew" style="min-height:34px;padding:6px 11px;font-size:13.5px">+ Nueva respuesta</button></div>
       <div id="rpList"></div>
     </div>
-    <div id="subMkt" hidden><div id="rpTips"></div></div>
+    <div id="subMkt" hidden>
+      <div class="mkseg" role="group" aria-label="Marketing" id="mkTabs">
+        <button type="button" data-mk="plan" aria-pressed="true">Plan semanal</button>
+        <button type="button" data-mk="camp" aria-pressed="false">Campañas</button>
+        <button type="button" data-mk="gen" aria-pressed="false">Crear post</button>
+        <button type="button" data-mk="tips" aria-pressed="false">Consejos</button>
+      </div>
+      <div id="mkPlan"></div>
+      <div id="mkCamp" hidden></div>
+      <div id="mkGen" hidden>
+        <div class="rpbox">
+          <div class="mkgrid">
+            <div class="field"><label for="mkProd">Producto</label><select id="mkProd"></select></div>
+            <div class="field"><label for="mkBadge">Sello en la imagen</label><select id="mkBadge"><option value="">Sin sello</option><option>NUEVO</option><option>OFERTA</option><option>ÚLTIMAS UNIDADES</option><option>POR ENCARGO</option><option>MÁS VENDIDO</option></select></div>
+          </div>
+          <span class="rplbl">¿Dónde lo vas a publicar?</span>
+          <div class="chips" id="mkFmt" style="flex-wrap:wrap;overflow:visible;margin-top:6px"></div>
+        </div>
+        <div class="mkout" id="mkOut"></div>
+      </div>
+      <div id="mkTips" hidden><div id="rpTips"></div></div>
+    </div>
     <div id="subAi" hidden>
       <div class="rpbox rpai">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>Pregúntale a Claude cómo responder</h3>
@@ -972,7 +1045,7 @@ let salesPeriod = 'month', salesView = (() => { try { return localStorage.getIte
 const SALE_PERIODS = [['today', 'Hoy'], ['7d', '7 días'], ['month', 'Este mes'], ['prevmonth', 'Mes anterior'], ['year', 'Este año'], ['all', 'Todo']];
 let coupons = [];
 let sales = [], tab = 'products', saleQuery = '', saleStatus = 'all', saleChannel = 'all', period = '30d';
-let salesSub = 'ventas', replies = null;
+let salesSub = 'ventas', replies = null, mkState = null;
 
 /* ---------- Utils ---------- */
 function clone(o){ return JSON.parse(JSON.stringify(o)); }
@@ -1313,7 +1386,8 @@ async function loadSupa(quiet){
     sales = S.map(r => ({ ...r.data, id: r.id }));
     coupons = C.map(r => ({ ...r.data, id: r.id }));
     const tr = G.find(r => r.id === 'trash'); trash = (tr && tr.data && Array.isArray(tr.data.items)) ? tr.data.items : [];
-    const rq = G.find(r => r.id === 'replies'); replies = (rq && rq.data && Array.isArray(rq.data.items)) ? rq.data.items : null; if (tab === 'sales' && salesSub !== 'ventas') drawSalesSub();
+    const rq = G.find(r => r.id === 'replies'); replies = (rq && rq.data && Array.isArray(rq.data.items)) ? rq.data.items : null;
+    const mq = G.find(r => r.id === 'mktplan'); mkState = (mq && mq.data) ? mq.data : null; if (tab === 'sales' && salesSub !== 'ventas') drawSalesSub();
     const st = G.find(r => r.id === 'settings');
     settings = st ? { ...clone(DEFAULT_SETTINGS), ...clone(st.data) } : clone(DEFAULT_SETTINGS);
     if (!Array.isArray(settings.categories)) settings.categories = clone(DEFAULT_CATS);
@@ -5421,7 +5495,7 @@ function drawSalesSub(){
   document.querySelectorAll('#salesSub [data-sub]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.sub === salesSub)));
   $('#subVentas').hidden = salesSub !== 'ventas'; $('#subResp').hidden = salesSub !== 'resp'; $('#subMkt').hidden = salesSub !== 'mkt'; $('#subAi').hidden = salesSub !== 'ai';
   if (salesSub === 'resp') { rpFillSelect('#rpProd', 'Elegir producto…'); drawReplies(); }
-  if (salesSub === 'mkt') { rpFillSelect('#rpProd', 'Elegir producto…'); drawTips(); }
+  if (salesSub === 'mkt') { rpFillSelect('#rpProd', 'Elegir producto…'); drawMkt(); }
   if (salesSub === 'ai') { rpFillSelect('#aiProd', 'Sin producto específico'); drawAI(); }
 }
 async function saveReplies(list){
@@ -5441,7 +5515,7 @@ function openReply(r){
 }
 $('#salesSub').addEventListener('click', e => { const b = e.target.closest('[data-sub]'); if (!b) return; salesSub = b.dataset.sub; drawSalesSub(); render(); });
 $('#rpCats').addEventListener('click', e => { const b = e.target.closest('[data-rpc]'); if (b) { rpCat = b.dataset.rpc; drawReplies(); } });
-['#rpCli', '#rpProd'].forEach(s => $(s).addEventListener('input', () => { if (salesSub === 'mkt') drawTips(); else drawReplies(); }));
+['#rpCli', '#rpProd'].forEach(s => $(s).addEventListener('input', () => { if (salesSub === 'mkt') drawMkt(); else drawReplies(); }));
 $('#rpNew').addEventListener('click', () => openReply(null));
 $('#rpList').addEventListener('click', e => {
   const c = e.target.closest('[data-rpcopy]'), ed = e.target.closest('[data-rpedit]');
@@ -5475,6 +5549,284 @@ $('#dlgReply').addEventListener('click', async e => {
   try { await saveReplies(list); d.close(); drawReplies(); toast(id === 'rpEDel' ? 'Respuesta eliminada' : 'Respuesta guardada'); }
   catch (err) { $('#rpErr').textContent = 'No se pudo guardar: ' + errMsg(err); }
 });
+
+/* ---------- Marketing: plan semanal, campañas y creador de posts ---------- */
+const MK_ZONA = 'Valparaíso, Viña del Mar, Quilpué y Villa Alemana';
+const MK_FMTS = {
+  ig_post:  { label: 'Instagram · Publicación', cls: 'ig', w: 1080, h: 1350, hora: '19:00 a 21:00', img: 'design' },
+  ig_reel:  { label: 'Instagram · Reel', cls: 'ig', w: 1080, h: 1920, hora: '18:00 a 21:00', img: 'design' },
+  ig_story: { label: 'Instagram · Historia', cls: 'ig', w: 1080, h: 1920, hora: '12:00 a 14:00 y 20:00 a 22:00', img: 'design' },
+  fb_page:  { label: 'Facebook · Página', cls: 'fb', w: 1080, h: 1080, hora: '13:00 a 15:00 o 19:00 a 21:00', img: 'design' },
+  fb_group: { label: 'Facebook · Grupo de ventas local', cls: 'fb', w: 1080, h: 1080, hora: '12:00 a 14:00 o 20:00 a 22:00', img: 'clean' },
+  market:   { label: 'Facebook · Marketplace', cls: 'mk', w: 1080, h: 1080, hora: '18:00 a 22:00', img: 'clean' },
+  wa_status:{ label: 'WhatsApp · Estado', cls: 'wa', w: 1080, h: 1920, hora: '8:00 a 9:00 y 20:00 a 22:00', img: 'design' }
+};
+const MK_IMGWHY = {
+  ig_post: 'Primera imagen con diseño para frenar el scroll y mostrar el precio; luego fotos limpias en el carrusel.',
+  ig_reel: 'Usa esta imagen solo como portada del Reel: el contenido es el video.',
+  ig_story: 'Con diseño: una historia se ve en 2 segundos, el precio y el sello tienen que verse al tiro.',
+  fb_page: 'Con diseño: funciona como anuncio de tu tienda y destaca el precio.',
+  fb_group: 'Foto limpia primero: en los grupos confían más en fotos reales. Si quieres, agrega la de diseño como segunda foto.',
+  market: 'Foto limpia sí o sí: Marketplace muestra el precio aparte y los compradores quieren ver el producto real.',
+  wa_status: 'Con diseño: tus contactos lo ven de pasada, el precio tiene que leerse sin abrirlo.'
+};
+let mkTab = 'plan', mkPid = '', mkF = 'ig_post', mkImg = '', mkSig = null, mkSigAt = 0;
+function mkWeek(){ const d = new Date(todayISO() + 'T12:00:00'), day = (d.getDay() + 6) % 7, mon = addDays(d, -day); return isoOf(mon); }
+function mkPlanState(){ const w = mkWeek(); if (!mkState || mkState.week !== w) mkState = { week: w, done: {}, shift: {} }; return mkState; }
+async function mkSave(){ try { if (mode === 'supa') await supaPut('config', 'mktplan', mkState); else localStorage.setItem('tienda-mktplan', JSON.stringify(mkState)); } catch {} }
+try { if (!SUPA) mkState = JSON.parse(localStorage.getItem('tienda-mktplan')) || null; } catch {}
+function mkHash(s){ return [...String(s)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7); }
+function mkProds(){
+  return catalogList().map(p => {
+    const vs = hasVariants(p) ? p.variants : [];
+    const price = vs.length ? Math.min(...vs.map(v => Number(v.price) || 0).filter(n => n > 0)) || calc(p).sale : calc(p).sale;
+    const stock = vs.length ? vs.reduce((a, v) => a + (Number(v.qty) || 0), 0) : Number(p.qty) || 0;
+    const ref = (p.images || [])[0] || (vs.find(v => (v.images || []).length) || {}).images?.[0] || '';
+    return { id: p.id, code: p.code, name: String(p.name || '').trim(), price, was: Number(p.wasPrice) > price ? Number(p.wasPrice) : 0, stock, od: !!p.onDemand, lead: p.lead || DEFAULT_LEAD,
+      cname: catName(p.categoryId), desc: String(p.description || '').trim(), img: ref ? thumbSrc(ref) : '', full: ref ? imgSrc(ref) : '', varN: vs.length, created: p.createdAt || '' };
+  });
+}
+async function mkSignals(){
+  if (mkSig && Date.now() - mkSigAt < 600000) return mkSig;
+  const since = isoOf(addDays(new Date(todayISO() + 'T12:00:00'), -29));
+  const sold = {};
+  sales.filter(v => v.status !== 'cancelada' && String(v.date || '') >= since).forEach(v => (v.items || []).forEach(i => { if (i.productId) sold[i.productId] = (sold[i.productId] || 0) + (Number(i.qty) || 0); }));
+  let views = null;
+  if (mode === 'supa') { try { const r = await sb.from('product_stats').select('code,views').gte('day', since).limit(20000); if (!r.error) { views = {}; (r.data || []).forEach(x => { views[x.code] = (views[x.code] || 0) + (Number(x.views) || 0); }); } } catch {} }
+  mkSig = { sold, views }; mkSigAt = Date.now(); return mkSig;
+}
+const mkLink = p => `${siteURL()}/p/${String(p.code).replace(/[^A-Za-z0-9_-]/g, '')}/`;
+const mkShort = (s, n) => s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…' : s;
+const mkFirst = d => mkShort((String(d).split(/(?<=[.!?])\s/)[0] || '').trim(), 140);
+function mkTags(p){
+  const c = (p.cname + ' ' + p.name).toLowerCase(), t = ['#casatintin', '#tiendaonline', '#chile'];
+  if (/beb|kid|niñ|infant|chupet|juguet/.test(c)) t.push('#bebe', '#mamaprimeriza', '#maternidad', '#regalobebe');
+  else if (/belleza|maquill|skin|cuidado/.test(c)) t.push('#belleza', '#maquillaje', '#organizacion', '#tocador');
+  else if (/office|escritorio|comput|oficina|lámpara|lampara/.test(c)) t.push('#homeoffice', '#escritorio', '#productividad');
+  else if (/electr|celular|cargador|audíf|audif/.test(c)) t.push('#tecnologia', '#accesorioscelular', '#gadgets');
+  else if (/auto/.test(c)) t.push('#auto', '#accesoriosauto', '#viajes');
+  else t.push('#hogar', '#organizacion', '#decoracionhogar', '#ideasparaelhogar');
+  t.push('#valparaiso', '#viñadelmar', '#quilpue', '#villaalemana');
+  return t.join(' ');
+}
+const mkStock = p => p.od ? `📦 Por encargo: llega en ${p.lead} días hábiles` : p.stock <= 0 ? '⏳ Agotado por ahora: puedes reservarlo' : p.stock <= 3 ? `🔥 ¡Quedan solo ${p.stock}!` : '✅ Disponible para entrega inmediata';
+const mkPrice = p => p.was > p.price ? `💰 ${money(p.price)} (antes ${money(p.was)})` : `💰 ${p.varN ? 'Desde ' : ''}${money(p.price)}`;
+function mkWa(){ const n = String(settings.whatsapp || '').replace(/\D/g, ''); return n ? '+' + n.replace(/^(56)(9)(\d{4})(\d{4})$/, '$1 $2 $3 $4') : ''; }
+function mkGroupVerdict(p){
+  if (!p.od && p.stock <= 0) return ['no', 'Mejor no por ahora', 'Está agotado. En los grupos la gente quiere comprar ya: publícalo cuando repongas y usa la reserva solo con quienes te escriban.'];
+  if (p.od) return ['mid', 'Sí, con cuidado', `Es por encargo (${p.lead} días hábiles). En grupos locales se prefiere entrega inmediata: deja claro el plazo y úsalo solo con productos muy buscados.`];
+  if (p.price > 30000) return ['mid', 'Mejor en Marketplace', 'Por su precio, en grupos de compraventa se mueve menos. Priorízalo en Marketplace y tu página; en grupos solo si es una oferta clara.'];
+  return ['yes', 'Sí, te lo recomiendo', `Está en stock, tiene precio accesible y ofreces entrega personal sin costo: es justo lo que buscan en los grupos de compraventa de ${MK_ZONA}.`];
+}
+function mkBuild(p, f){
+  const d = mkFirst(p.desc) || 'Ideal para tu día a día.', L = mkLink(p), web = webCfg().name || 'casatintin.cl';
+  const o = { text: '', scenes: null, tips: [], verdict: null };
+  if (f === 'ig_post') {
+    o.text = `${p.was > p.price ? '¡OFERTA! ' : ''}${p.name} ✨\n\n${d}\n\n${mkPrice(p)}\n${mkStock(p)}\n🚚 Entrega personal sin costo en puntos preestablecidos o envío a todo Chile\n💳 Transferencia, débito o crédito\n\n👉 Compra en el link de la bio o escríbenos por DM\n\n${mkTags(p)}`;
+    o.tips = ['Sube 3 a 5 fotos en carrusel: la imagen con diseño primero, luego el producto en uso y los detalles.', 'Deja en tu bio el link a la tienda y fija el post si es una oferta.', 'Responde todos los comentarios en la primera hora: Instagram muestra más los posts con conversación.'];
+  } else if (f === 'ig_reel') {
+    o.scenes = [['0–2 s', `Gancho: muestra el problema o el resultado final. Texto en pantalla: "${p.od ? '¿Lo andabas buscando?' : '¿Te pasa esto?'}"`], ['2–6 s', `Saca ${p.name.toLowerCase()} de la caja o muéstralo en mano, con luz natural.`], ['6–11 s', `Demuéstralo en uso: ${d.replace(/\.$/, '')}. Planos cortos de 1 a 2 segundos.`], ['11–15 s', `Cierre con el precio en pantalla: "${money(p.price)} · ${settings.storeName || 'Casa Tintin'}" y "Link en la bio".`]];
+    o.text = `${p.name} 👀\n${d}\n\n${mkPrice(p)} · ${mkStock(p)}\nPide el tuyo en el link de la bio o por DM 💬\n\n${mkTags(p)}`;
+    o.tips = ['Graba vertical, de 10 a 15 segundos: los 2 primeros deciden si la gente se queda.', 'Usa un audio en tendencia de Instagram a volumen bajo.', 'Pon la imagen de abajo como portada para que tu perfil se vea ordenado.'];
+  } else if (f === 'ig_story') {
+    o.scenes = [['Historia 1', 'La imagen con diseño + sticker de enlace al producto.'], ['Historia 2', 'Video corto del producto en uso + encuesta: "¿Lo necesitas? Sí / ¡Ya lo quiero!"'], ['Historia 3', `${p.stock > 0 && p.stock <= 3 ? `"Quedan solo ${p.stock} 🔥"` : '"¿Dudas? Escríbeme"'} + sticker de pregunta o cuenta regresiva.`]];
+    o.text = `Texto del sticker de enlace: "Ver ${mkShort(p.name, 28)}"\nLink: ${L}`;
+    o.tips = ['Publica las 3 historias seguidas: cuentan una mini historia y retienen más.', 'A quien vote o pregunte, escríbele por DM con una respuesta de la sección Respuestas.', 'Guarda las mejores en un destacado por categoría.'];
+  } else if (f === 'fb_page') {
+    o.text = `${p.was > p.price ? '🏷️ OFERTA · ' : ''}${p.name}\n\n${d}\n\n${mkPrice(p)}\n${mkStock(p)}\n\n📍 Entrega personal sin costo en puntos preestablecidos (${MK_ZONA}) o envío a domicilio por Blue Express.\n💳 Paga con transferencia, débito o crédito.\n\n👉 Míralo con fotos y compra aquí: ${L}\n💬 ¿Dudas? Escríbenos por Messenger o WhatsApp.`;
+    o.tips = ['En Facebook el link se puede tocar y mostrará la foto del producto.', 'Compártelo en tu perfil personal y en tus historias de Facebook.', 'Si quieres invertir poco, este es el mejor post para "Promocionar" con $2.000 a $3.000 diarios en tu zona.'];
+  } else if (f === 'fb_group') {
+    o.text = `VENDO ${p.name.toUpperCase()}${p.od ? ' (POR ENCARGO)' : ''}\n\n${mkPrice(p)}\n${mkStock(p)}\n${d}\n\n📍 Entrega personal sin costo (${MK_ZONA}), punto y horario a coordinar.\n🚚 También envío a todo Chile.\n💳 Transferencia o tarjeta.\n\nEscríbeme por interno${mkWa() ? ` o al WhatsApp ${mkWa()}` : ''} 😊`;
+    o.verdict = mkGroupVerdict(p);
+    o.tips = ['Antes de publicar, lee las reglas del grupo: varios no permiten links ni tiendas.', 'Publica en 2 o 3 grupos de compraventa de tu zona, no en 10: los grupos castigan el spam.', 'No repitas el mismo producto en el mismo grupo más de una vez por semana.', 'Responde rápido por interno: en los grupos gana el primero que contesta.'];
+  } else if (f === 'market') {
+    o.text = `TÍTULO:\n${mkShort(p.name, 90)}${p.was > p.price ? ' – Oferta' : ''}\n\nPRECIO:\n${money(p.price)}\n\nDESCRIPCIÓN:\n${p.desc ? mkShort(p.desc, 400) : d}\n\n${mkStock(p).replace(/^\S+\s/, '')}.\nEntrega personal sin costo en puntos preestablecidos (${MK_ZONA}) o envío a todo Chile por Blue Express.\nPago por transferencia, débito o crédito.\nProducto nuevo · ${settings.storeName || 'Casa Tintin'} (${web}).`;
+    o.tips = ['Agrega 3 a 5 fotos reales además de la foto limpia.', 'Elige la categoría correcta y marca el estado "Nuevo".', 'Renueva la publicación cada 7 días para volver a aparecer arriba.', 'En Marketplace rinden más los productos de precio medio y alto con entrega personal.'];
+  } else if (f === 'wa_status') {
+    o.text = `${p.stock > 0 && p.stock <= 3 ? '🔥 Últimas unidades\n' : ''}${p.name}\n${mkPrice(p)}\nResponde este estado y te lo aparto 💬`;
+    o.tips = ['Sube 2 o 3 estados al día como máximo.', 'Quien responde un estado ya está interesado: contesta con la respuesta "Saludo + link del producto".', 'Los estados duran 24 horas: ideales para urgencia y ofertas del día.'];
+  }
+  return o;
+}
+const mkImgCache = new Map();
+function mkLoadImg(src){
+  if (!src) return Promise.resolve(null);
+  if (mkImgCache.has(src)) return mkImgCache.get(src);
+  const pr = new Promise(res => { const i = new Image(); i.crossOrigin = 'anonymous'; i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
+  mkImgCache.set(src, pr); return pr;
+}
+function mkRR(c, x, y, w, h, r){ c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+function mkWrap(c, text, maxW, maxLines){
+  const words = text.split(/\s+/), lines = []; let cur = '';
+  for (const w of words) { const s = cur ? cur + ' ' + w : w; if (c.measureText(s).width > maxW && cur) { lines.push(cur); cur = w; } else cur = s; }
+  if (cur) lines.push(cur);
+  if (lines.length > maxLines) { lines.length = maxLines; lines[maxLines - 1] = lines[maxLines - 1].replace(/\s*\S*$/, '') + '…'; }
+  return lines;
+}
+async function mkDraw(canvas, p, f, badge, clean){
+  const F = MK_FMTS[f], W = F.w, H = F.h, c = canvas.getContext('2d');
+  canvas.width = W; canvas.height = H;
+  try { await document.fonts.ready; } catch {}
+  const im = await mkLoadImg(p.full || p.img);
+  if (clean) {
+    c.fillStyle = '#FFFFFF'; c.fillRect(0, 0, W, H);
+    if (im) { const s = Math.min((W - 80) / im.width, (H - 80) / im.height), iw = im.width * s, ih = im.height * s; c.drawImage(im, (W - iw) / 2, (H - ih) / 2, iw, ih); }
+    return !!im;
+  }
+  c.fillStyle = '#F3ECE2'; c.fillRect(0, 0, W, H);
+  c.fillStyle = '#E9DFD1'; c.beginPath(); c.arc(W * 0.92, H * 0.06, W * 0.32, 0, Math.PI * 2); c.fill();
+  const tall = H / W > 1.5, pad = 64;
+  const py = tall ? 230 : 124, photoH = tall ? 1110 : H - py - (H > 1100 ? 400 : 380), photoW = W - pad * 2;
+  const lg = await mkLoadImg(CATALOG_LOGO);
+  if (lg) { const lw = tall ? 400 : 270, lh = lw * lg.height / lg.width; c.drawImage(lg, (W - lw) / 2, tall ? 90 : 30, lw, lh); }
+  c.save(); mkRR(c, pad, py, photoW, photoH, 40); c.fillStyle = '#FFFFFF'; c.fill(); c.clip();
+  if (im) { const s = Math.min(photoW / im.width, photoH / im.height) * 0.94, iw = im.width * s, ih = im.height * s; c.drawImage(im, pad + (photoW - iw) / 2, py + (photoH - ih) / 2, iw, ih); }
+  c.restore();
+  if (badge) { c.font = '800 40px "Bricolage Grotesque", sans-serif'; const bw = c.measureText(badge).width + 56; c.fillStyle = '#F4C430'; mkRR(c, pad + 28, py + 28, bw, 74, 37); c.fill(); c.fillStyle = '#2A2100'; c.textAlign = 'left'; c.fillText(badge, pad + 56, py + 79); }
+  let y = py + photoH + (tall ? 100 : 70);
+  c.textAlign = tall ? 'center' : 'left'; const tx = tall ? W / 2 : pad;
+  c.fillStyle = '#2E241E'; c.font = `700 ${tall ? 62 : 52}px "Bricolage Grotesque", sans-serif`;
+  for (const ln of mkWrap(c, p.name, W - pad * 2, 2)) { c.fillText(ln, tx, y); y += tall ? 72 : 60; }
+  y += tall ? 84 : 62;
+  c.font = `800 ${tall ? 120 : 92}px "Bricolage Grotesque", sans-serif`;
+  const pr = (p.varN ? 'Desde ' : '') + money(p.price); c.fillText(pr, tx, y);
+  if (p.was > p.price) { const pw = c.measureText(pr).width; c.font = `500 ${tall ? 54 : 44}px "IBM Plex Sans", sans-serif`; c.fillStyle = '#8C7D70'; const wt = money(p.was), ww = c.measureText(wt).width; const wx = tall ? W / 2 - ww / 2 : pad + pw + 28, wy = tall ? y + 70 : y - 8; c.textAlign = 'left'; c.fillText(wt, wx, wy); c.fillRect(wx, wy - 16, ww, 4); }
+  c.font = `500 ${tall ? 40 : 34}px "IBM Plex Sans", sans-serif`; c.fillStyle = '#6B5D52'; c.textAlign = 'center';
+  const host = siteURL().replace(/^https?:\/\//, '');
+  c.fillText(f === 'fb_group' || f === 'market' ? 'Entrega personal sin costo · Envíos a todo Chile' : tall ? `Link en la bio · ${host}` : host, W / 2, H - (tall ? 110 : 44));
+  return !!im;
+}
+const mkFmtChip = f => `<span class="mkfmt ${MK_FMTS[f].cls}">${esc(MK_FMTS[f].label)}</span>`;
+const mkAuto = p => p.was > p.price ? 'OFERTA' : p.od ? 'POR ENCARGO' : p.stock > 0 && p.stock <= 3 ? 'ÚLTIMAS UNIDADES' : '';
+const MK_COACH = (t, body) => `<div class="mkcoach"><span class="av">CT</span><div><b>${esc(t)}</b>${body}</div></div>`;
+function mkPrompt(p, f, txt){
+  const web = webCfg().name || 'casatintin.cl';
+  return `Actúa como el mejor asesor experto en marketing, redes sociales y ventas, especializado en diseño de posts y campañas para tiendas online.
+
+Mi tienda: ${settings.storeName || 'Casa Tintin'} (Chile). Vendo por Instagram, Facebook, Marketplace, WhatsApp y mi web ${web}. Precios con IVA incluido. Pago por transferencia o débito/crédito en la web. Entrega personal sin costo en puntos preestablecidos (${MK_ZONA}) o envío a todo Chile por Blue Express. Productos por encargo: ${DEFAULT_LEAD} días hábiles.
+
+Producto: ${p.name} (código ${p.code}), ${money(p.price)}${p.was > p.price ? `, antes ${money(p.was)}` : ''}. ${p.od ? 'Por encargo.' : p.stock > 0 ? `${p.stock} en stock.` : 'Agotado.'} Categoría: ${p.cname || '-'}. Link con foto: ${mkLink(p)}
+Descripción: ${p.desc || '-'}
+
+Formato: ${MK_FMTS[f].label}.
+Borrador actual:
+---
+${txt}
+---
+
+Mejóralo para vender más: dame 2 versiones (una más emocional y una más directa), ideas para la foto o el video, el mejor horario para publicar y cómo responder a quienes comenten.`;
+}
+async function mkDrawGen(){
+  const PS = mkProds();
+  const sel = $('#mkProd'), cur = mkPid || sel.value;
+  sel.innerHTML = PS.map(p => `<option value="${esc(p.id)}">${esc(p.code)} · ${esc(p.name)}</option>`).join('');
+  if (cur && PS.some(p => p.id === cur)) sel.value = cur;
+  mkPid = sel.value;
+  $('#mkFmt').innerHTML = Object.keys(MK_FMTS).map(f => `<button class="chip" type="button" data-mkf="${f}" aria-pressed="${f === mkF}">${esc(MK_FMTS[f].label)}</button>`).join('');
+  const p = PS.find(x => x.id === mkPid);
+  if (!p) { $('#mkOut').innerHTML = '<div class="empty"><p>No hay productos publicados con precio.</p></div>'; return; }
+  const o = mkBuild(p, mkF), F = MK_FMTS[mkF], img = mkImg || F.img;
+  $('#mkOut').innerHTML = `
+    ${o.verdict ? `<div class="mkverd ${o.verdict[0]}"><b>¿Publicarlo en grupos de ventas locales? ${esc(o.verdict[1])}</b>${esc(o.verdict[2])}</div>` : ''}
+    <div class="mkcv">
+      <div class="rpseg" role="group" aria-label="Tipo de imagen" id="mkImgSeg"><button type="button" data-img="design" aria-pressed="${img === 'design'}">Con diseño${F.img === 'design' ? ' ★' : ''}</button><button type="button" data-img="clean" aria-pressed="${img === 'clean'}">Foto limpia${F.img === 'clean' ? ' ★' : ''}</button></div>
+      <canvas id="mkCv" aria-label="Imagen del post"></canvas>
+      <button class="btn primary" type="button" id="mkDl">Descargar imagen (${F.w}×${F.h})</button>
+      <p class="hint" style="text-align:center">★ Recomendado. ${esc(MK_IMGWHY[mkF])}</p>
+    </div>
+    ${o.scenes ? `<div class="rpbox"><p class="mksec">${mkF === 'ig_reel' ? 'Guion del Reel (15 s)' : 'Secuencia de historias'}</p><ol class="mkscenes">${o.scenes.map(([a, b]) => `<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join('')}</ol></div>` : ''}
+    <div class="rpbox"><p class="mksec">${mkF === 'market' ? 'Datos para Marketplace' : mkF === 'ig_story' ? 'Enlace' : 'Texto del post'}<button class="btn" type="button" id="mkCp" style="min-height:34px;padding:5px 11px;font-size:13.5px">Copiar</button></p><div class="mktxt">${esc(o.text)}</div></div>
+    ${MK_COACH('Consejos para que funcione', `<ul>${o.tips.map(x => `<li>${esc(x)}</li>`).join('')}<li>Mejor horario: ${esc(F.hora)} (recomendación general; revisa en tus estadísticas de Instagram y Facebook cuándo se conectan tus seguidores).</li></ul>`)}
+    <button class="btn" type="button" id="mkAsk">Mejorar este post con Claude</button>`;
+  const ok = await mkDraw($('#mkCv'), p, mkF, $('#mkBadge').value, img === 'clean');
+  $('#mkDl').onclick = () => { try { const a = document.createElement('a'); a.download = `casatintin-${p.code}-${mkF}${img === 'clean' ? '-limpia' : ''}.png`; a.href = $('#mkCv').toDataURL('image/png'); document.body.appendChild(a); a.click(); a.remove(); } catch { toast('No se pudo descargar la imagen'); } };
+  if (!ok) toast('Este producto no tiene foto');
+  $('#mkCp').onclick = () => copyText(o.text, 'Texto copiado');
+  $('#mkAsk').onclick = () => window.open('https://claude.ai/new?q=' + encodeURIComponent(mkPrompt(p, mkF, o.text)), '_blank', 'noopener');
+  $('#mkImgSeg').onclick = e => { const b = e.target.closest('[data-img]'); if (b) { mkImg = b.dataset.img; mkDrawGen(); } };
+}
+function mkOpen(id, f, badge){
+  const PS = mkProds(), p = PS.find(x => x.id === id); if (!p) return;
+  mkPid = id; mkF = f; mkImg = ''; $('#mkBadge').value = badge ?? mkAuto(p);
+  mkTab = 'gen'; drawMkt(); window.scrollTo({ top: $('#subMkt').getBoundingClientRect().top + scrollY - 70 });
+}
+async function mkCampaigns(){
+  const PS = mkProds(), S = await mkSignals(), soldOf = p => S.sold[p.id] || 0;
+  const inStock = PS.filter(p => !p.od && p.stock > 0), out = [];
+  const since14 = isoOf(addDays(new Date(todayISO() + 'T12:00:00'), -13));
+  const fresh = PS.filter(p => String(p.created).slice(0, 10) >= since14 && (p.stock > 0 || p.od));
+  if (fresh.length) out.push({ t: 'Novedades', why: `Agregaste ${fresh.length} producto${fresh.length === 1 ? '' : 's'} en las últimas 2 semanas. Lo nuevo genera curiosidad: muéstralos juntos en un carrusel.`, ps: fresh, f: 'ig_post', b: 'NUEVO' });
+  const last = inStock.filter(p => p.stock <= 3);
+  if (last.length) out.push({ t: 'Últimas unidades', why: 'Urgencia real: quedan 1 a 3 unidades. Es el mensaje que más decide a un indeciso, ideal para historias y estados.', ps: last, f: 'ig_story', b: 'ÚLTIMAS UNIDADES' });
+  const off = PS.filter(p => p.was > p.price);
+  if (off.length) out.push({ t: 'Ofertas activas', why: 'Productos con precio rebajado: muéstralos con el precio anterior tachado; el ahorro visible vende.', ps: off, f: 'fb_page', b: 'OFERTA' });
+  if (S.views) {
+    const seen = inStock.map(p => ({ p, v: S.views[p.code] || 0, s: soldOf(p) })).filter(x => x.v >= 10 && x.s === 0).sort((a, b) => b.v - a.v).slice(0, 6).map(x => x.p);
+    if (seen.length) out.push({ t: 'Muy vistos, poco vendidos', why: 'Los miran en el catálogo (10+ visitas en 30 días) pero nadie los compró. Les falta un empujón: un Reel mostrándolos en uso suele resolver la duda.', ps: seen, f: 'ig_reel', b: '' });
+  }
+  const stale = inStock.filter(p => p.stock >= 4 && soldOf(p) === 0 && String(p.created).slice(0, 10) < since14).sort((a, b) => b.stock - a.stock).slice(0, 6);
+  if (stale.length) out.push({ t: 'Stock detenido', why: 'Tienen 4 o más unidades y ninguna venta en 30 días. Muévelos en grupos de compraventa locales o arma un pack con descuento.', ps: stale, f: 'fb_group', b: '' });
+  const best = inStock.filter(p => soldOf(p) >= 2).sort((a, b) => soldOf(b) - soldOf(a)).slice(0, 5);
+  if (best.length) out.push({ t: 'Tus más vendidos', why: 'Lo que ya funciona hay que repetirlo: la prueba social ("el más vendido") convence a los que dudan.', ps: best, f: 'ig_post', b: 'MÁS VENDIDO' });
+  const cats = {}; PS.forEach(p => { if (p.cname && p.cname !== 'Sin categoría') (cats[p.cname] = cats[p.cname] || []).push(p); });
+  const ck = Object.keys(cats).sort(), wk = mkHash(mkWeek()) % Math.max(1, ck.length), cat = ck[wk];
+  if (cat) out.push({ t: `Semana ${cat}`, why: `Dedicar la semana a una categoría ordena tu feed y atrae a un público específico. Esta semana toca ${cat} (${cats[cat].length} productos).`, ps: cats[cat], f: 'fb_page', b: '' });
+  const big = inStock.filter(p => p.price >= 15000).sort((a, b) => b.price - a.price).slice(0, 6);
+  if (big.length) out.push({ t: 'Destacados para Marketplace', why: 'En stock y de precio medio-alto: en Marketplace se buscan por nombre y la entrega personal sin costo es un gran plus.', ps: big, f: 'market', b: '' });
+  return out;
+}
+async function mkDrawCamps(){
+  $('#mkCamp').innerHTML = '<p class="hint" style="padding:12px 0">Analizando tu tienda…</p>';
+  const cs = await mkCampaigns();
+  $('#mkCamp').innerHTML = MK_COACH('Campañas que te recomiendo ahora', `<p>Las armé con tu stock, precios, ventas de los últimos 30 días${mkSig && mkSig.views ? ' y visitas del catálogo' : ''}. Elige una y te dejo el post listo en el formato que mejor le funciona.</p>`) +
+    (cs.map((c, k) => `<article class="mkcamp"><h3>${esc(c.t)} <span class="cnt">${c.ps.length}</span></h3><p class="why">${esc(c.why)}</p>
+      <div class="mkthumbs">${c.ps.slice(0, 10).map(p => p.img ? `<img src="${esc(p.img)}" alt="${esc(p.name)}" title="${esc(p.name)}" loading="lazy">` : `<span title="${esc(p.name)}"></span>`).join('')}</div>
+      <div class="mktop">Formato recomendado: ${mkFmtChip(c.f)}</div>
+      <div class="mkacts"><button class="btn primary" type="button" data-mkcamp="${k}">Crear post</button></div></article>`).join('') || '<div class="empty"><p>No hay campañas sugeridas por ahora.</p></div>');
+  $('#mkCamp').onclick = e => { const b = e.target.closest('[data-mkcamp]'); if (!b) return; const c = cs[+b.dataset.mkcamp]; mkOpen(c.ps[0].id, c.f, c.b); };
+}
+const MK_DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+const MK_PLAN = [
+  { t: 'Novedades de la semana', f: 'ig_post', b: 'NUEVO', n: 'Abre la semana mostrando lo nuevo.', pick: (ps, S) => { const s14 = isoOf(addDays(new Date(todayISO() + 'T12:00:00'), -13)); const a = ps.filter(p => String(p.created).slice(0, 10) >= s14 && (p.stock > 0 || p.od)); return a.length ? a : ps.filter(p => p.stock > 0); } },
+  { t: 'Grupo de ventas local', f: 'fb_group', b: '', n: 'Producto en stock y accesible: lo que más rota en grupos.', pick: ps => ps.filter(p => !p.od && p.stock > 0 && p.price <= 30000) },
+  { t: 'Demostración en uso', f: 'ig_reel', b: '', n: 'Un Reel corto que muestra para qué sirve.', pick: (ps, S) => { const a = S.views ? ps.filter(p => !p.od && p.stock > 0 && (S.views[p.code] || 0) >= 10) : []; return a.length ? a : ps.filter(p => p.stock > 0 || p.od); } },
+  { t: 'Marketplace', f: 'market', b: '', n: 'Publica o renueva un producto de precio medio-alto.', pick: ps => ps.filter(p => !p.od && p.stock > 0 && p.price >= 10000) },
+  { t: 'Oferta o últimas unidades', f: 'ig_story', b: null, n: 'Urgencia para cerrar la semana con ventas.', pick: ps => ps.filter(p => p.was > p.price || (!p.od && p.stock > 0 && p.stock <= 3)) },
+  { t: 'Categoría destacada', f: 'fb_page', b: '', n: 'Una categoría distinta cada semana.', pick: ps => { const ck = [...new Set(ps.map(p => p.cname).filter(c => c && c !== 'Sin categoría'))].sort(); const cat = ck[mkHash(mkWeek()) % Math.max(1, ck.length)]; return ps.filter(p => p.cname === cat && (p.stock > 0 || p.od)); } },
+  { t: 'Estado de domingo', f: 'wa_status', b: '', n: 'Tus contactos ya te conocen: recuérdales que existes.', pick: (ps, S) => { const a = ps.filter(p => !p.od && p.stock > 0 && (S.sold[p.id] || 0) > 0); return a.length ? a : ps.filter(p => !p.od && p.stock > 0); } }
+];
+function mkPlanPicks(PS, S){
+  const st = mkPlanState(), used = new Set(), out = [];
+  MK_PLAN.forEach((d, k) => { const pool = d.pick(PS, S), list0 = pool.length ? pool : PS, free = list0.filter(p => !used.has(p.id)), list = free.length ? free : list0;
+    const p = list.length ? list[(mkHash(st.week + ':' + k) + (st.shift[k] || 0)) % list.length] : null; if (p) used.add(p.id); out.push(p); });
+  return out;
+}
+async function mkDrawPlan(){
+  const PS = mkProds(), S = await mkSignals(), st = mkPlanState(), picks = mkPlanPicks(PS, S), today = (new Date().getDay() + 6) % 7;
+  const nDone = MK_PLAN.filter((_, k) => st.done[k]).length;
+  $('#mkPlan').innerHTML = MK_COACH(`Tu semana: ${nDone} de 7 publicaciones hechas`, '<p>Una publicación por día, cada una en el formato donde mejor funciona. Toca "Crear post" y te la dejo lista; marca "Hecho" al publicar. Cada lunes se arma una semana nueva con otros productos.</p>') +
+    `<div class="mkweek">${MK_PLAN.map((d, k) => { const p = picks[k]; return `<div class="mkday${st.done[k] ? ' done' : ''}${k === today ? ' today' : ''}">
+      <div class="mkdn">${MK_DAYS[k].slice(0, 3)}<small>${k === today ? 'hoy' : ''}</small></div>
+      <div><div class="mktop"><span class="mkth">${esc(d.t)}</span>${mkFmtChip(d.f)}</div><p class="hint" style="margin:0">${esc(d.n)}</p>
+        ${p ? `<div class="mkprod">${p.img ? `<img class="mkth40" src="${esc(p.img)}" alt="" loading="lazy">` : '<span class="mkth40"></span>'}<span>${esc(p.name)}<br><b>${money(p.price)}</b></span></div>` : ''}
+        <div class="mkacts">${p ? `<button class="btn primary" type="button" data-mkplan="${k}">Crear post</button><button class="btn" type="button" data-mkswap="${k}">Otro producto</button>` : ''}<label class="mkcheck"><input type="checkbox" data-mkdone="${k}" ${st.done[k] ? 'checked' : ''}>Hecho</label></div>
+      </div></div>`; }).join('')}</div>`;
+  $('#mkPlan').onclick = async e => {
+    const c = e.target.closest('[data-mkplan]'), s = e.target.closest('[data-mkswap]'), d = e.target.closest('[data-mkdone]');
+    if (c) { const k = +c.dataset.mkplan, p = picks[k]; if (p) mkOpen(p.id, MK_PLAN[k].f, MK_PLAN[k].b ?? mkAuto(p)); }
+    if (s) { const k = +s.dataset.mkswap; st.shift[k] = (st.shift[k] || 0) + 1; await mkSave(); mkDrawPlan(); }
+    if (d) { st.done[+d.dataset.mkdone] = d.checked; await mkSave(); mkDrawPlan(); }
+  };
+}
+function drawMkt(){
+  document.querySelectorAll('#mkTabs [data-mk]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mk === mkTab)));
+  $('#mkPlan').hidden = mkTab !== 'plan'; $('#mkCamp').hidden = mkTab !== 'camp'; $('#mkGen').hidden = mkTab !== 'gen'; $('#mkTips').hidden = mkTab !== 'tips';
+  if (mkTab === 'plan') mkDrawPlan(); else if (mkTab === 'camp') mkDrawCamps(); else if (mkTab === 'gen') mkDrawGen(); else drawTips();
+}
+$('#mkTabs').addEventListener('click', e => { const b = e.target.closest('[data-mk]'); if (!b) return; mkTab = b.dataset.mk; drawMkt(); });
+$('#mkFmt').addEventListener('click', e => { const b = e.target.closest('[data-mkf]'); if (b) { mkF = b.dataset.mkf; mkImg = ''; mkDrawGen(); } });
+$('#mkProd').addEventListener('change', e => { mkPid = e.target.value; const p = mkProds().find(x => x.id === mkPid); $('#mkBadge').value = p ? mkAuto(p) : ''; mkDrawGen(); });
+$('#mkBadge').addEventListener('change', mkDrawGen);
 
 /* ---------- Main events ---------- */
 $('#btnNew').addEventListener('click', () => tab === 'sales' ? openSale(null) : openEditor(null));
