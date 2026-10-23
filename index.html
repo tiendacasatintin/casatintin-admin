@@ -604,6 +604,10 @@ input.flash{box-shadow:0 0 0 3px #F4C430;transition:box-shadow .3s}
 .rpgoal{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
 .rpgoal .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .rplbl{font-size:13px;font-weight:600}
+.rptok{display:flex;flex-wrap:wrap;gap:6px}
+.rptok button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer;color:var(--ink);min-height:34px}
+.rptok button.k{background:color-mix(in srgb,var(--tag) 30%,var(--surface));border-color:color-mix(in srgb,var(--tag) 70%,var(--line))}
+.rptok button.f{font-weight:700}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .rpmsg{background:#173326;color:#DCF3E4}}
 :root[data-theme="dark"] .rpmsg{background:#173326;color:#DCF3E4}
 @media (max-width:460px){.rpfill{grid-template-columns:1fr}.rpseg button{padding:0 4px;font-size:13px;gap:4px}.rpseg button svg{display:none}.rpseg .new{padding:1px 5px}}
@@ -1029,7 +1033,7 @@ details.webimp summary{cursor:pointer}
 <dialog id="dlgTrash" aria-labelledby="trTitle" style="width:min(560px,100%)"><div class="dlg" id="trInner"></div></dialog>
 <dialog id="dlgDup" aria-labelledby="dupTitle" style="width:min(560px,100%)"><div class="dlg" id="dupInner"></div></dialog>
 <dialog id="dlgAsk" aria-labelledby="askTitle" style="width:min(560px,100%)"><div class="dlg" id="askInner"></div></dialog>
-<dialog id="dlgReply" aria-labelledby="rpTitle" style="width:min(560px,100%)"><div class="dlg"><div class="dlg-head"><h2 id="rpTitle">Nueva respuesta</h2><button class="x" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><div class="dlg-body"><div class="field"><label for="rpEName">Título</label><input id="rpEName" maxlength="60" placeholder="Ej: Cliente pide descuento"></div><div class="field"><label for="rpECat">Tipo</label><select id="rpECat"></select></div><div class="field"><label for="rpEText">Mensaje</label><textarea id="rpEText" style="min-height:160px;resize:vertical" maxlength="1500"></textarea></div><p class="hint" style="margin:0 0 12px">Puedes usar {cliente}, {producto}, {precio}, {codigo}, {link}, {catalogo}, {web}, {abono}, {dias_reserva} y {dias_encargo}. Se completan solos. Para negrita en WhatsApp usa *asteriscos*.</p><p class="err" id="rpErr" role="alert"></p><div class="rpacts"><button class="btn" type="button" id="rpEDel" style="color:var(--warn)">Eliminar</button><button class="btn" type="button" id="rpEReset" hidden>Restaurar original</button><button class="btn primary" type="button" id="rpESave">Guardar</button></div></div></div></dialog>
+<dialog id="dlgReply" aria-labelledby="rpTitle" style="width:min(560px,100%)"><div class="dlg"><div class="dlg-head"><h2 id="rpTitle">Nueva respuesta</h2><button class="x" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><div class="dlg-body"><div class="field"><label for="rpEName">Título</label><input id="rpEName" maxlength="60" placeholder="Ej: Cliente pide descuento"></div><div class="field"><label for="rpECat">Tipo</label><select id="rpECat"></select></div><div class="field"><label for="rpEText">Mensaje</label><textarea id="rpEText" style="min-height:160px;resize:vertical" maxlength="1500"></textarea></div><p class="rplbl" style="margin:0 0 4px">Toca para insertar en el mensaje</p><div class="rptok" id="rpTok"></div><p class="hint" style="margin:4px 0 12px">Se completan solos con el cliente y el producto que elijas.</p><p class="err" id="rpErr" role="alert"></p><div class="rpacts"><button class="btn" type="button" id="rpEDel" style="color:var(--warn)">Eliminar</button><button class="btn" type="button" id="rpEReset" hidden>Restaurar original</button><button class="btn primary" type="button" id="rpESave">Guardar</button></div></div></div></dialog>
 <dialog id="dlgSettings" aria-labelledby="dsTitle"><div class="dlg" id="dsInner"></div></dialog>
 <input type="file" id="fileIn" accept="image/*" multiple hidden>
 <input type="file" id="vidIn" accept="video/mp4,video/webm" hidden>
@@ -5464,9 +5468,16 @@ function rpVars(){
   const slug = p ? String(p.code || '').replace(/[^A-Za-z0-9_-]/g, '') : '';
   return { cliente: $('#rpCli').value.trim(), producto: p ? (p.name || '').trim() : '', precio: p ? money(calc(p).sale) : '', codigo: p ? p.code : '',
     link: p && slug ? `${site}/p/${slug}/` : site, catalogo: site, web: webCfg().url || 'https://casatintin.cl',
-    abono: money(r.fee ?? 2000), dias_reserva: r.days || '10-15', dias_encargo: (p && p.onDemand && p.lead) || DEFAULT_LEAD, stock: p && rpStock(p) ? String(rpStock(p)) : '2' };
+    whatsapp: mkWa(), abono: money(r.fee ?? 2000), dias_reserva: r.days || '10-15', dias_encargo: (p && p.onDemand && p.lead) || DEFAULT_LEAD, stock: p && rpStock(p) ? String(rpStock(p)) : '2' };
 }
-const RP_KEYS = /\{(cliente|producto|precio|codigo|link|catalogo|web|abono|dias_reserva|dias_encargo|stock)\}/g;
+const RP_KEYS = /\{(cliente|producto|precio|codigo|link|catalogo|web|whatsapp|abono|dias_reserva|dias_encargo|stock)\}/g;
+const RP_TOKENS = [['cliente', 'Cliente'], ['producto', 'Producto'], ['precio', 'Precio'], ['codigo', 'Código'], ['link', 'Link del producto'], ['catalogo', 'Catálogo'], ['web', 'Web'], ['whatsapp', 'Mi WhatsApp'], ['abono', 'Abono reserva'], ['dias_reserva', 'Días reserva'], ['dias_encargo', 'Días encargo']];
+function rpInsert(text, wrap){
+  const ta = $('#rpEText'), a = ta.selectionStart ?? ta.value.length, b = ta.selectionEnd ?? a;
+  if (wrap) { const sel = ta.value.slice(a, b) || 'texto'; ta.setRangeText(wrap + sel + wrap, a, b, 'select'); if (a === b) { ta.selectionStart = a + 1; ta.selectionEnd = a + 1 + sel.length; } }
+  else { const pre = a > 0 && !/\s/.test(ta.value[a - 1]) ? ' ' : ''; ta.setRangeText(pre + text, a, b, 'end'); }
+  ta.focus();
+}
 const rpTidy = s => s.replace(/ +([!,?.])/g, '$1').replace(/ {2,}/g, ' ');
 function rpFill(t, v){ return rpTidy(t.replace(RP_KEYS, (m, k) => v[k] || (k === 'cliente' ? '' : m))); }
 function rpFillHTML(t, v){
@@ -5540,6 +5551,7 @@ function openReply(r){
   $('#rpECat').innerHTML = RP_CATS.map(c => `<option>${esc(c)}</option>`).join('');
   $('#rpEName').value = r ? r.name : ''; $('#rpECat').value = r ? r.cat : (rpCat !== 'Todas' ? rpCat : RP_CATS[0]);
   $('#rpEText').value = r ? r.text : '¡Hola {cliente}! '; $('#rpErr').textContent = '';
+  $('#rpTok').innerHTML = RP_TOKENS.map(([k, l]) => `<button type="button" class="k" data-tok="${k}">${esc(l)}</button>`).join('') + '<button type="button" class="f" data-wrap="*" title="Negrita en WhatsApp">*Negrita*</button><button type="button" data-wrap="_" title="Cursiva en WhatsApp"><i>_Cursiva_</i></button>';
   $('#rpEDel').hidden = !r; const def = r && RP_DEFAULTS.find(d => d.id === r.id); $('#rpEReset').hidden = !def || (def.text === r.text && def.name === r.name);
   $('#dlgReply').showModal();
 }
@@ -5560,8 +5572,12 @@ $('#aiAsk').addEventListener('click', () => {
   window.open('https://claude.ai/new?q=' + encodeURIComponent(aiPrompt()), '_blank', 'noopener');
 });
 $('#aiCopy').addEventListener('click', () => copyText(aiPrompt(), 'Consulta copiada, pégala en Claude'));
+$('#dlgReply').addEventListener('mousedown', e => { if (e.target.closest('#rpTok button')) e.preventDefault(); });
 $('#dlgReply').addEventListener('click', async e => {
   const d = $('#dlgReply');
+  const tk = e.target.closest('[data-tok]'), wr = e.target.closest('[data-wrap]');
+  if (tk) { rpInsert(`{${tk.dataset.tok}}`); return; }
+  if (wr) { rpInsert('', wr.dataset.wrap); return; }
   if (e.target.closest('[data-close]')) { d.close(); return; }
   const id = e.target.closest('button')?.id;
   if (!['rpESave', 'rpEDel', 'rpEReset'].includes(id)) return;
