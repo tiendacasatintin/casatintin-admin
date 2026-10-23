@@ -51,7 +51,15 @@ header.top{padding:20px 0 8px;display:flex;align-items:flex-end;justify-content:
 .brand h1{display:flex;align-items:center;gap:12px;font:700 clamp(28px,6vw,40px)/1.05 var(--display);letter-spacing:-.02em;margin:0}
 .brand .logo{width:clamp(38px,8vw,48px);height:auto;flex:none}
 .brand p{margin:4px 0 0;color:var(--muted);font-size:14px}
-.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+.top-actions{display:flex;flex-wrap:wrap;gap:8px;width:100%;flex:1 1 100%}
+.top-actions::before{content:"";flex-basis:100%;height:0;margin-bottom:-8px;order:5}
+.top-actions .btn{flex:1 1 auto;justify-content:center;padding:9px 10px;white-space:nowrap}
+.top-actions #trashN{background:var(--warn);color:#fff;border-radius:999px;padding:0 6px;font-size:11px;margin-left:2px}
+.top-actions #btnCatalog{order:1}.top-actions #btnWeb{order:2}.top-actions #btnCats{order:3}.top-actions #btnExport{order:6}.top-actions #btnTrash{order:7;flex:0 0 auto;padding:9px 12px;gap:4px}.top-actions #btnSettings{order:8;flex:0 0 auto;padding:9px 12px}.top-actions #btnLogout{order:9}
+.top-actions #btnLogout{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+@media (min-width:720px){.top-actions{max-width:640px}}
+@media (max-width:390px){.top-actions{gap:6px}.top-actions::before{margin-bottom:-6px}.top-actions .btn{padding:8px 7px;gap:5px;font-size:14px}.top-actions .btn svg{width:16px;height:16px}}
+#viewSales>.vhead,#viewCoupons>.vhead{flex-direction:column;align-items:flex-start;gap:2px}
 .btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:40px}
 .btn:hover{border-color:var(--muted)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
@@ -605,6 +613,18 @@ input.flash{box-shadow:0 0 0 3px #F4C430;transition:box-shadow .3s}
 .rpgoal .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .rplbl{font-size:13px;font-weight:600}
 .rptok{display:flex;flex-wrap:wrap;gap:6px}
+.rpcard .top{align-items:flex-start}
+.rpcard .ttl{display:flex;align-items:center;gap:6px;min-width:0}
+.rpdrag{flex:none;width:34px;height:34px;margin:-4px 0 -4px -6px;border:0;background:transparent;border-radius:8px;cursor:grab;color:var(--muted);display:grid;place-items:center;touch-action:none}
+.rpdrag svg{width:18px;height:18px}
+.rpdrag:active{cursor:grabbing}
+.rpcard.dragging{box-shadow:0 14px 34px rgba(10,16,30,.25);border-color:var(--accent);position:relative;z-index:5;opacity:.97}
+.rpcard.dragging .rpdrag{color:var(--accent)}
+body.rpdragging{user-select:none;-webkit-user-select:none}
+.rpcats-row{display:flex;gap:6px;align-items:center;margin-bottom:8px}
+.rpcats-row input{flex:1;border:1px solid var(--line);background:var(--sunk);border-radius:9px;padding:8px 10px;min-height:40px}
+.rpcats-row .n{font:500 12px var(--mono);color:var(--muted);min-width:56px;text-align:right}
+.rpcats-row .del{border:1px solid var(--line);background:var(--surface);border-radius:9px;width:40px;height:40px;cursor:pointer;color:var(--warn);font-size:18px}
 .rptok button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer;color:var(--ink);min-height:34px}
 .rptok button.k{background:color-mix(in srgb,var(--tag) 30%,var(--surface));border-color:color-mix(in srgb,var(--tag) 70%,var(--line))}
 .rptok button.f{font-weight:700}
@@ -823,7 +843,7 @@ details.webimp summary{cursor:pointer}
         Categorías</button>
       <button class="btn" id="btnExport" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        Descargar Excel</button>
+        Excel</button>
       <button class="btn" id="btnCatalog" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-6h6v6"/></svg>
         Catálogo</button>
@@ -832,11 +852,11 @@ details.webimp summary{cursor:pointer}
         Web</button>
       <button class="btn" id="btnTrash" type="button" hidden>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
-        Papelera <b id="trashN"></b></button>
-      <button class="btn" id="btnLogout" type="button" hidden>Salir</button>
+        <span class="sr">Papelera</span><b id="trashN"></b></button>
+      <button class="btn" id="btnLogout" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>Salir</button>
       <button class="btn" id="btnSettings" type="button" aria-label="Ajustes">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
-        Ajustes</button>
+        <span class="sr">Ajustes</span></button>
     </div>
   </header>
   <div id="notice"></div>
@@ -905,7 +925,7 @@ details.webimp summary{cursor:pointer}
         <p class="hint" style="margin:0">Las partes <mark style="background:color-mix(in srgb,var(--tag) 55%,transparent);border-radius:3px;padding:0 2px">marcadas</mark> se completan solas con el cliente y el producto que elijas: nombre, precio con IVA y link con foto.</p>
       </div>
       <div class="chips" id="rpCats" role="toolbar" aria-label="Tipo de respuesta"></div>
-      <div class="rpbar"><p class="hint" id="rpCount"></p><button class="btn" type="button" id="rpNew" style="min-height:34px;padding:6px 11px;font-size:13.5px">+ Nueva respuesta</button></div>
+      <div class="rpbar"><p class="hint" id="rpCount"></p><button class="btn" type="button" id="rpTypes" style="min-height:34px;padding:6px 11px;font-size:13.5px">Tipos</button><button class="btn" type="button" id="rpNew" style="min-height:34px;padding:6px 11px;font-size:13.5px">+ Nueva respuesta</button></div>
       <div id="rpList"></div>
     </div>
     <div id="subMkt" hidden>
@@ -1033,7 +1053,8 @@ details.webimp summary{cursor:pointer}
 <dialog id="dlgTrash" aria-labelledby="trTitle" style="width:min(560px,100%)"><div class="dlg" id="trInner"></div></dialog>
 <dialog id="dlgDup" aria-labelledby="dupTitle" style="width:min(560px,100%)"><div class="dlg" id="dupInner"></div></dialog>
 <dialog id="dlgAsk" aria-labelledby="askTitle" style="width:min(560px,100%)"><div class="dlg" id="askInner"></div></dialog>
-<dialog id="dlgReply" aria-labelledby="rpTitle" style="width:min(560px,100%)"><div class="dlg"><div class="dlg-head"><h2 id="rpTitle">Nueva respuesta</h2><button class="x" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><div class="dlg-body"><div class="field"><label for="rpEName">Título</label><input id="rpEName" maxlength="60" placeholder="Ej: Cliente pide descuento"></div><div class="field"><label for="rpECat">Tipo</label><select id="rpECat"></select></div><div class="field"><label for="rpEText">Mensaje</label><textarea id="rpEText" style="min-height:160px;resize:vertical" maxlength="1500"></textarea></div><p class="rplbl" style="margin:0 0 4px">Toca para insertar en el mensaje</p><div class="rptok" id="rpTok"></div><p class="hint" style="margin:4px 0 12px">Se completan solos con el cliente y el producto que elijas.</p><p class="err" id="rpErr" role="alert"></p><div class="rpacts"><button class="btn" type="button" id="rpEDel" style="color:var(--warn)">Eliminar</button><button class="btn" type="button" id="rpEReset" hidden>Restaurar original</button><button class="btn primary" type="button" id="rpESave">Guardar</button></div></div></div></dialog>
+<dialog id="dlgRpCats" aria-labelledby="rcTitle" style="width:min(520px,100%)"><div class="dlg"><div class="dlg-head"><h2 id="rcTitle">Tipos de respuesta</h2><button class="x" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><div class="dlg-body"><p class="hint" style="margin:0 0 12px">Cambia el nombre, agrega o elimina tipos. Si eliminas uno, sus respuestas pasan al tipo que elijas abajo.</p><div id="rcList"></div><button class="btn" type="button" id="rcAdd" style="margin:2px 0 14px">+ Agregar tipo</button><div class="field" id="rcMoveBox" hidden><label for="rcMove">Las respuestas de tipos eliminados pasan a</label><select id="rcMove"></select></div><p class="err" id="rcErr" role="alert"></p><div class="rpacts"><button class="btn primary" type="button" id="rcSave">Guardar tipos</button></div></div></div></dialog>
+<dialog id="dlgReply" aria-labelledby="rpTitle" style="width:min(560px,100%)"><div class="dlg"><div class="dlg-head"><h2 id="rpTitle">Nueva respuesta</h2><button class="x" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><div class="dlg-body"><div class="field"><label for="rpEName">Título</label><input id="rpEName" maxlength="60" placeholder="Ej: Cliente pide descuento"></div><div class="field"><label for="rpECat">Tipo</label><select id="rpECat"></select><input id="rpENewCat" maxlength="30" placeholder="Nombre del nuevo tipo" hidden style="margin-top:6px"></div><div class="field"><label for="rpEText">Mensaje</label><textarea id="rpEText" style="min-height:160px;resize:vertical" maxlength="1500"></textarea></div><p class="rplbl" style="margin:0 0 4px">Toca para insertar en el mensaje</p><div class="rptok" id="rpTok"></div><p class="hint" style="margin:4px 0 12px">Se completan solos con el cliente y el producto que elijas.</p><p class="err" id="rpErr" role="alert"></p><div class="rpacts"><button class="btn" type="button" id="rpEDel" style="color:var(--warn)">Eliminar</button><button class="btn" type="button" id="rpEReset" hidden>Restaurar original</button><button class="btn primary" type="button" id="rpESave">Guardar</button></div></div></div></dialog>
 <dialog id="dlgSettings" aria-labelledby="dsTitle"><div class="dlg" id="dsInner"></div></dialog>
 <input type="file" id="fileIn" accept="image/*" multiple hidden>
 <input type="file" id="vidIn" accept="video/mp4,video/webm" hidden>
@@ -1078,7 +1099,7 @@ let salesPeriod = 'month', salesView = (() => { try { return localStorage.getIte
 const SALE_PERIODS = [['today', 'Hoy'], ['7d', '7 días'], ['month', 'Este mes'], ['prevmonth', 'Mes anterior'], ['year', 'Este año'], ['all', 'Todo']];
 let coupons = [];
 let sales = [], tab = 'products', saleQuery = '', saleStatus = 'all', saleChannel = 'all', period = '30d';
-let salesSub = 'ventas', replies = null, mkState = null;
+let salesSub = 'ventas', replies = null, rpCatsSaved = null, mkState = null;
 
 /* ---------- Utils ---------- */
 function clone(o){ return JSON.parse(JSON.stringify(o)); }
@@ -1419,7 +1440,7 @@ async function loadSupa(quiet){
     sales = S.map(r => ({ ...r.data, id: r.id }));
     coupons = C.map(r => ({ ...r.data, id: r.id }));
     const tr = G.find(r => r.id === 'trash'); trash = (tr && tr.data && Array.isArray(tr.data.items)) ? tr.data.items : [];
-    const rq = G.find(r => r.id === 'replies'); replies = (rq && rq.data && Array.isArray(rq.data.items)) ? rq.data.items : null;
+    const rq = G.find(r => r.id === 'replies'); replies = (rq && rq.data && Array.isArray(rq.data.items)) ? rq.data.items : null; rpCatsSaved = (rq && rq.data && Array.isArray(rq.data.cats)) ? rq.data.cats : null;
     const mq = G.find(r => r.id === 'mktplan'); mkState = (mq && mq.data) ? mq.data : null; if (tab === 'sales' && salesSub !== 'ventas') drawSalesSub();
     const st = G.find(r => r.id === 'settings');
     settings = st ? { ...clone(DEFAULT_SETTINGS), ...clone(st.data) } : clone(DEFAULT_SETTINGS);
@@ -5493,9 +5514,10 @@ function rpFillSelect(sel, first){
 }
 function drawReplies(){
   const list = rpList().filter(r => rpCat === 'Todas' || r.cat === rpCat), v = rpVars();
-  $('#rpCats').innerHTML = ['Todas', ...RP_CATS].map(c => `<button class="chip" type="button" data-rpc="${esc(c)}" aria-pressed="${c === rpCat}">${esc(c)}</button>`).join('');
+  if (rpCat !== 'Todas' && !rpCatsList().includes(rpCat)) rpCat = 'Todas';
+  $('#rpCats').innerHTML = ['Todas', ...rpCatsList()].map(c => `<button class="chip" type="button" data-rpc="${esc(c)}" aria-pressed="${c === rpCat}">${esc(c)}</button>`).join('');
   $('#rpCount').textContent = `${list.length} respuesta${list.length === 1 ? '' : 's'} lista${list.length === 1 ? '' : 's'} para copiar`;
-  $('#rpList').innerHTML = list.length ? list.map(r => `<article class="rpcard"><div class="top"><b>${esc(r.name)}</b><span class="rpcat">${esc(r.cat)}</span></div>
+  $('#rpList').innerHTML = list.length ? list.map(r => `<article class="rpcard" data-rid="${esc(r.id)}"><div class="top"><span class="ttl">${list.length > 1 ? `<button class="rpdrag" type="button" aria-label="Arrastrar para ordenar" title="Arrastra para ordenar"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg></button>` : ''}<b>${esc(r.name)}</b></span><span class="rpcat">${esc(r.cat)}</span></div>
     <div class="rpmsg">${rpFillHTML(r.text, v)}</div>
     <div class="rpacts"><button class="btn primary sm" type="button" data-rpcopy="${esc(r.id)}">Copiar</button><button class="btn sm" type="button" data-rpedit="${esc(r.id)}">Editar</button></div></article>`).join('')
     : '<div class="empty"><p>No hay respuestas de este tipo. Crea una con "+ Nueva respuesta".</p></div>';
@@ -5539,17 +5561,25 @@ function drawSalesSub(){
   if (salesSub === 'mkt') { rpFillSelect('#rpProd', 'Elegir producto…'); drawMkt(); }
   if (salesSub === 'ai') { rpFillSelect('#aiProd', 'Sin producto específico'); drawAI(); }
 }
-async function saveReplies(list){
-  replies = list;
-  if (mode === 'supa') await supaPut('config', 'replies', { items: list });
-  else { try { localStorage.setItem('tienda-replies', JSON.stringify(list)); } catch {} }
+function rpCatsList(){
+  const base = rpCatsSaved || RP_CATS, extra = [...new Set(rpList().map(r => r.cat).filter(c => c && !base.includes(c)))];
+  return [...base, ...extra];
 }
-try { if (!SUPA) { const lr = JSON.parse(localStorage.getItem('tienda-replies')); if (Array.isArray(lr)) replies = lr; } } catch {}
+async function saveReplies(list, cats){
+  const prev = [replies, rpCatsSaved]; replies = list; if (cats) rpCatsSaved = cats;
+  try {
+    if (mode === 'supa') await supaPut('config', 'replies', { items: list, ...(rpCatsSaved ? { cats: rpCatsSaved } : {}) });
+    else { localStorage.setItem('tienda-replies', JSON.stringify(list)); if (rpCatsSaved) localStorage.setItem('tienda-replies-cats', JSON.stringify(rpCatsSaved)); }
+  } catch (e) { [replies, rpCatsSaved] = prev; throw e; }
+}
+try { if (!SUPA) { const lr = JSON.parse(localStorage.getItem('tienda-replies')); if (Array.isArray(lr)) replies = lr; const lc = JSON.parse(localStorage.getItem('tienda-replies-cats')); if (Array.isArray(lc)) rpCatsSaved = lc; } } catch {}
 function openReply(r){
   rpEditing = r || null;
   $('#rpTitle').textContent = r ? 'Editar respuesta' : 'Nueva respuesta';
-  $('#rpECat').innerHTML = RP_CATS.map(c => `<option>${esc(c)}</option>`).join('');
-  $('#rpEName').value = r ? r.name : ''; $('#rpECat').value = r ? r.cat : (rpCat !== 'Todas' ? rpCat : RP_CATS[0]);
+  const cats = rpCatsList();
+  $('#rpECat').innerHTML = cats.map(c => `<option>${esc(c)}</option>`).join('') + '<option value="__new">+ Nuevo tipo…</option>';
+  $('#rpENewCat').hidden = true; $('#rpENewCat').value = '';
+  $('#rpEName').value = r ? r.name : ''; $('#rpECat').value = r && cats.includes(r.cat) ? r.cat : (rpCat !== 'Todas' ? rpCat : cats[0]);
   $('#rpEText').value = r ? r.text : '¡Hola {cliente}! '; $('#rpErr').textContent = '';
   $('#rpTok').innerHTML = RP_TOKENS.map(([k, l]) => `<button type="button" class="k" data-tok="${k}">${esc(l)}</button>`).join('') + '<button type="button" class="f" data-wrap="*" title="Negrita en WhatsApp">*Negrita*</button><button type="button" data-wrap="_" title="Cursiva en WhatsApp"><i>_Cursiva_</i></button>';
   $('#rpEDel').hidden = !r; const def = r && RP_DEFAULTS.find(d => d.id === r.id); $('#rpEReset').hidden = !def || (def.text === r.text && def.name === r.name);
@@ -5583,8 +5613,11 @@ $('#dlgReply').addEventListener('click', async e => {
   if (!['rpESave', 'rpEDel', 'rpEReset'].includes(id)) return;
   const list = clone(rpList());
   if (id === 'rpESave') {
-    const name = $('#rpEName').value.trim(), text = $('#rpEText').value.trim(), cat = $('#rpECat').value;
+    const name = $('#rpEName').value.trim(), text = $('#rpEText').value.trim(); let cat = $('#rpECat').value, newCats = null;
     if (!name || !text) { $('#rpErr').textContent = 'Completa el título y el mensaje.'; return; }
+    if (cat === '__new') { cat = $('#rpENewCat').value.trim(); if (!cat) { $('#rpErr').textContent = 'Escribe el nombre del nuevo tipo.'; $('#rpENewCat').focus(); return; }
+      const ex = rpCatsList().find(c => norm(c) === norm(cat)); if (ex) cat = ex; else newCats = [...rpCatsList(), cat]; }
+    rpCatPending = newCats;
     if (rpEditing) { const x = list.find(r => r.id === rpEditing.id); if (x) Object.assign(x, { name, text, cat }); }
     else list.unshift({ id: genId(), name, text, cat });
   } else if (id === 'rpEDel') {
@@ -5592,9 +5625,75 @@ $('#dlgReply').addEventListener('click', async e => {
   } else {
     const def = RP_DEFAULTS.find(r => r.id === rpEditing.id), x = list.find(r => r.id === rpEditing.id); if (def && x) Object.assign(x, clone(def));
   }
-  try { await saveReplies(list); d.close(); drawReplies(); toast(id === 'rpEDel' ? 'Respuesta eliminada' : 'Respuesta guardada'); }
+  try { await saveReplies(list, id === 'rpESave' ? rpCatPending : null); rpCatPending = null; d.close(); drawReplies(); toast(id === 'rpEDel' ? 'Respuesta eliminada' : 'Respuesta guardada'); }
   catch (err) { $('#rpErr').textContent = 'No se pudo guardar: ' + errMsg(err); }
 });
+
+let rpCatPending = null;
+$('#rpECat').addEventListener('change', e => { const n = e.target.value === '__new'; $('#rpENewCat').hidden = !n; if (n) $('#rpENewCat').focus(); });
+
+/* Tipos: renombrar, agregar, eliminar */
+let rcRows = [];
+function rcDraw(){
+  const count = c => rpList().filter(r => r.cat === c).length;
+  $('#rcList').innerHTML = rcRows.map((r, i) => r.del ? '' : `<div class="rpcats-row"><input data-rc="${i}" value="${esc(r.name)}" maxlength="30" aria-label="Nombre del tipo"><span class="n">${r.orig ? `${count(r.orig)} resp.` : 'nuevo'}</span><button class="del" type="button" data-rcdel="${i}" aria-label="Eliminar tipo">×</button></div>`).join('');
+  const dels = rcRows.filter(r => r.del && r.orig && count(r.orig));
+  $('#rcMoveBox').hidden = !dels.length;
+  const alive = rcRows.filter(r => !r.del && r.name.trim());
+  const cur = $('#rcMove').value; $('#rcMove').innerHTML = alive.map(r => `<option>${esc(r.name.trim())}</option>`).join(''); if ([...$('#rcMove').options].some(o => o.value === cur)) $('#rcMove').value = cur;
+}
+$('#rpTypes').addEventListener('click', () => { rcRows = rpCatsList().map(c => ({ orig: c, name: c, del: false })); $('#rcErr').textContent = ''; rcDraw(); $('#dlgRpCats').showModal(); });
+$('#rcList').addEventListener('input', e => { const i = e.target.dataset.rc; if (i == null) return; const row = rcRows[+i], sel = $('#rcMove'), o = sel.value, was = row.name.trim(); row.name = e.target.value;
+  sel.innerHTML = rcRows.filter(r => !r.del && r.name.trim()).map(r => `<option>${esc(r.name.trim())}</option>`).join('');
+  sel.value = o === was ? row.name.trim() : o; if (!sel.value && sel.options[0]) sel.selectedIndex = 0; });
+$('#dlgRpCats').addEventListener('click', async e => {
+  const d = $('#dlgRpCats');
+  if (e.target.closest('[data-close]')) { d.close(); return; }
+  const del = e.target.closest('[data-rcdel]');
+  if (del) { rcRows[+del.dataset.rcdel].del = true; rcDraw(); return; }
+  if (e.target.closest('#rcAdd')) { rcRows.push({ orig: null, name: '', del: false }); rcDraw(); const ins = $('#rcList').querySelectorAll('input'); ins[ins.length - 1]?.focus(); return; }
+  if (!e.target.closest('#rcSave')) return;
+  const alive = rcRows.filter(r => !r.del && r.name.trim()), names = alive.map(r => r.name.trim());
+  if (!names.length) { $('#rcErr').textContent = 'Debe quedar al menos un tipo.'; return; }
+  if (new Set(names.map(norm)).size !== names.length) { $('#rcErr').textContent = 'Hay dos tipos con el mismo nombre.'; return; }
+  const ren = Object.fromEntries(alive.filter(r => r.orig).map(r => [r.orig, r.name.trim()])), dest = $('#rcMove').value || names[0];
+  const list = clone(rpList()).map(r => ({ ...r, cat: ren[r.cat] || (rcRows.some(x => x.del && x.orig === r.cat) ? dest : r.cat) }));
+  try { await saveReplies(list, names); if (ren[rpCat]) rpCat = ren[rpCat]; d.close(); drawReplies(); toast('Tipos guardados'); }
+  catch (err) { $('#rcErr').textContent = 'No se pudo guardar: ' + errMsg(err); }
+});
+
+/* Ordenar respuestas arrastrando (dedo o mouse) */
+let rpDrag = null;
+$('#rpList').addEventListener('pointerdown', e => {
+  const h = e.target.closest('.rpdrag'); if (!h) return;
+  const card = h.closest('.rpcard'); e.preventDefault();
+  h.setPointerCapture(e.pointerId);
+  rpDrag = { card, h, id: e.pointerId, y: e.clientY, moved: false, before: [...$('#rpList').querySelectorAll('.rpcard')].map(c => c.dataset.rid) };
+  card.classList.add('dragging'); document.body.classList.add('rpdragging');
+  if (navigator.vibrate) try { navigator.vibrate(15); } catch {}
+});
+window.addEventListener('pointermove', e => {
+  if (!rpDrag || e.pointerId !== rpDrag.id) return; e.preventDefault();
+  const { card } = rpDrag, y = e.clientY;
+  const prev = card.previousElementSibling, next = card.nextElementSibling;
+  if (prev && prev.classList.contains('rpcard')) { const r = prev.getBoundingClientRect(); if (y < r.top + r.height / 2) { card.parentNode.insertBefore(card, prev); rpDrag.moved = true; } }
+  if (next && next.classList.contains('rpcard')) { const r = next.getBoundingClientRect(); if (y > r.top + r.height / 2) { card.parentNode.insertBefore(next, card); rpDrag.moved = true; } }
+  if (rpDrag.moved) { try { if (!rpDrag.h.hasPointerCapture(rpDrag.id)) rpDrag.h.setPointerCapture(rpDrag.id); } catch {} }
+  if (y < 70) window.scrollBy(0, -12); else if (y > innerHeight - 70) window.scrollBy(0, 12);
+}, { passive: false });
+async function rpDragEnd(e){
+  if (!rpDrag || e.pointerId !== rpDrag.id) return;
+  const { card, before } = rpDrag; rpDrag = null;
+  card.classList.remove('dragging'); document.body.classList.remove('rpdragging');
+  const after = [...$('#rpList').querySelectorAll('.rpcard')].map(c => c.dataset.rid);
+  if (after.join() === before.join()) return;
+  const list = clone(rpList()), slots = list.map((r, i) => before.includes(r.id) ? i : -1).filter(i => i > -1), byId = Object.fromEntries(list.map(r => [r.id, r]));
+  const out = list.slice(); after.forEach((rid, k) => { out[slots[k]] = byId[rid]; });
+  try { await saveReplies(out); toast('Orden guardado'); } catch (err) { toast('No se pudo guardar el orden'); drawReplies(); }
+}
+window.addEventListener('pointerup', rpDragEnd);
+window.addEventListener('pointercancel', rpDragEnd);
+document.addEventListener('touchmove', e => { if (rpDrag) e.preventDefault(); }, { passive: false });
 
 /* ---------- Marketing: plan semanal, campañas y creador de posts ---------- */
 const MK_ZONA = 'Valparaíso, Viña del Mar, Quilpué y Villa Alemana';
@@ -6004,7 +6103,7 @@ $('#aiMsg').addEventListener('input', () => { clearTimeout(aiDetT); aiDetT = set
 $('#aiDet').addEventListener('click', e => { const b = e.target.closest('[data-aiuse]'); if (b) { pkPick('aiProd', b.dataset.aiuse); $('#aiDet').hidden = true; } });
 
 /* ---------- Aviso de versión nueva: evita quedarse con la app vieja guardada en el navegador ---------- */
-const APP_BUILD = '20261023103004';
+const APP_BUILD = '20261023113051';
 let updT = 0;
 async function checkUpdate(){
   if (Date.now() - updT < 120000 || !/^https?:$/.test(location.protocol)) return; updT = Date.now();
